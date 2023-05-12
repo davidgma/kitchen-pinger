@@ -1,1 +1,9 @@
-<p>clockface works!</p>
+<section id="clock-face">
+  <div class="dot"></div>
+  <time *ngFor="let i of hours" id="h{{i}}">{{i}}</time>
+  <span class="arm seconds"></span>
+  <span class="arm minutes"></span>
+  <span class="arm hours"></span>
+  <div class="dialline-large" *ngFor="let i of dialLinesLarge"  style.transform ="rotate({{i}}deg)"></div>
+  <div class="dialline" *ngFor="let i of dialLinesSmall"  style.transform ="rotate({{i}}deg)"></div>
+</section>

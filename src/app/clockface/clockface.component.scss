@@ -1,0 +1,157 @@
+#clock-face {
+  --background: #202020;
+  --foreground: #e8e8e8;
+  --foreground2: #e8e8e8a0;
+  --font-size: min(90vw / 15, 90vh / 15);
+  --icon-size: min(90vw / 8, 90vh / 8);
+  --clock-size: min(91vw, 91vh);
+  --transform-origin: 50% min(45vw, 45vh);
+  --container-direction: column;
+  --nav-direction: row;
+  --line-height: auto;
+  --line-width: 100vw;
+  --line-border-horizonal: 1px solid var(--foreground2);
+  --line-border-vertical: none;
+  border: min(0.5vh, 0.5vw) solid var(--foreground);
+  width: var(--clock-size);
+  height: var(--clock-size);
+  border-radius: 50%;
+  position: relative;
+  color: var(--foreground);
+  font-size: var(--font-size);
+
+  & time {
+    position: absolute;
+  }
+
+  & #h12 {
+    top: 5%;
+    left: 47%;
+  }
+  & #h1 {
+    top: 10%;
+    left: 69%;
+  }
+  & #h2 {
+    top: 25%;
+    left: 85%;
+  }
+  & #h3 {
+    top: 46%;
+    left: 91%;
+  }
+  & #h4 {
+    top: 68%;
+    left: 85%;
+  }
+  & #h5 {
+    top: 82%;
+    left: 69%;
+  }
+  & #h6 {
+    top: 87%;
+    left: 48%;
+  }
+  & #h7 {
+    top: 81%;
+    left: 27%;
+  }
+  & #h8 {
+    top: 68%;
+    left: 12%;
+  }
+  & #h9 {
+    top: 46%;
+    left: 6%;
+  }
+  & #h10 {
+    top: 25%;
+    left: 11%;
+  }
+  & #h11 {
+    top: 10%;
+    left: 26%;
+  }
+
+  & .arm {
+    position: absolute;
+    transform-origin: bottom;
+  }
+
+  & .seconds {
+    bottom: 50%;
+    left: 50%;
+    background-color: red;
+    height: 45%;
+    width: min(1vh, 1vw);
+    border-radius: calc(1cqi * 2);
+    animation: turn 60s linear infinite;
+    animation-delay: var(--_ds, 0ms);
+    z-index: 7;
+  }
+
+  & .minutes {
+    bottom: 50%;
+    left: 48.5%;
+    background-color: var(--foreground);
+    height: 37%;
+    width: min(2.5vh, 2.5vw);
+    border-radius: calc(2.5cqi * 2);
+    animation: turn 3600s steps(60, end) infinite;
+    animation-delay: var(--_dm, 0ms);
+    z-index: 8;
+  }
+
+  & .hours {
+    bottom: 50%;
+    left: 48.5%;
+    background-color: var(--foreground);
+    height: 26%;
+    width: min(2.5vh, 2.5vw);
+    border-radius: calc(2.5cqi * 2);
+    animation: turn 43200s linear infinite;
+    animation-delay: var(--_dh, 0ms);
+    z-index: 9;
+  }
+
+  & .dot {
+    width: min(6vh, 6vw);
+    height: min(6vh, 6vw);
+    border-radius: 50%;
+    background: var(--foreground);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    z-index: 10;
+    box-shadow: 0 2px 4px -1px black;
+  }
+
+  & .dialline {
+    position: absolute;
+    z-index: 2;
+    width: min(0.5vh, 0.5vw);
+    height: min(2vh, 2vw);
+    background: var(--foreground);
+    left: 50%;
+    transform-origin: var(--transform-origin);
+
+  }
+  & .dialline-large {
+    position: absolute;
+    z-index: 2;
+    width: min(1vh, 1vw);
+    height: min(4vh, 4vw);
+    background: var(--foreground);
+    left: 50%;
+    transform-origin: var(--transform-origin);
+  }
+}
+
+@keyframes turn {
+  to {
+    transform: rotate(1turn);
+  }
+}
