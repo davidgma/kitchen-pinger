@@ -31,11 +31,12 @@ export class ClockfaceComponent {
       }
     }
 
-    onload = (event) => this.initialize();
+    onload = () => this.initialize();
   }
 
   initialize() {
-    console.log('page loaded');
+    console.log('page loaded. this: ');
+    console.log(this);
 
     console.log("Calling setHands from initialize...");
     this.setHands();
@@ -96,12 +97,12 @@ export class ClockfaceComponent {
     const mins = -60 * time.getMinutes();
     const secs = -1 * time.getSeconds();
 
-    // Get the root element
-    let r = document.documentElement;
+    // Get the clockface element
+    let r = document.getElementById("clock-face");
     this.reset_animation();
-    r.style.setProperty('--_dm', `${mins}s`);
-    r.style.setProperty('--_dh', `${hour + mins}s`);
-    r.style.setProperty('--_ds', `${secs}s`);
+    r?.style.setProperty('--_dm', `${mins}s`);
+    r?.style.setProperty('--_dh', `${hour + mins}s`);
+    r?.style.setProperty('--_ds', `${secs}s`);
   }
 
   private reset_animation() {
