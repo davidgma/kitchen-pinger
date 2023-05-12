@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+
 @Component({
   selector: 'app-clockface',
   templateUrl: './clockface.component.html',
@@ -10,6 +11,9 @@ export class ClockfaceComponent {
   hours = new Array<number>();
   dialLinesLarge = new Array<number>();
   dialLinesSmall = new Array<number>();
+  degreesSeconds = 0;
+  degreesMinutes = 0;
+  degreesHours = 0;
 
   constructor() {
     console.log("In ClockfaceComponent");
@@ -34,24 +38,17 @@ export class ClockfaceComponent {
     onload = () => this.initialize();
   }
 
-  initialize() {
-    console.log('page loaded. this: ');
-    console.log(this);
+  ngAfterViewInit() {
+    // setInterval(() => { this.setHands() }, 100);
+  }
 
-    console.log("Calling setHands from initialize...");
-    this.setHands();
+  initialize() {
+    console.log('Page loaded.');
+    // console.log(this);
+
+    // console.log("Calling setHands from initialize...");
     this.placeItems();
 
-    console.log(
-      'seconds to next whole minute: ' + this.millisecondsToNextMinute() / 1000
-    );
-    setTimeout(() => {
-      console.log("Calling setHands from initialize's setTimeout...");
-      this.setHands();
-    },
-      this.millisecondsToNextMinute());
-
-    setTimeout(() => { this.updateClockRegularly(); }, this.millisecondsToNextMinute());
 
     // let colourMode = document.getElementById('colour-mode');
     // if (colourMode != null && colourMode instanceof HTMLElement) {
@@ -68,61 +65,43 @@ export class ClockfaceComponent {
     //   home.addEventListener('click', openGithubVersion);
     // }
 
-    document.addEventListener('visibilitychange', () => {
-      if (document.visibilityState == 'visible') {
-        console.log("Calling setHands from visibilitychange event...");
-        this.setHands();
-      }
-    });
+    // document.addEventListener('visibilitychange', () => {
+    //   if (document.visibilityState == 'visible') {
+    //     console.log("Calling setHands from visibilitychange event...");
+    //     // this.setHands();
+    //   }
+    // });
 
     window.addEventListener('resize', () => { this.placeItems(); });
 
     setInterval(() => {
       let now = new Date();
+
+      // Set the title text
       let time = now.getHours().toFixed().padStart(2, '0') + ":" + now.getMinutes().toFixed().padStart(2, '0')
         + ":" + now.getSeconds().toFixed().padStart(2, '0')
         ;
       if (document.title !== time) {
         document.title = time;
       }
-    }, 100);
+
+      // set the clock hands
+      this.setHands(now);
+
+    }, 10);
   }
 
-  private setHands() {
-    /* to set current time */
-    console.log("in setHands. this: ");
-    console.log(this);
-    const time = new Date();
-    const hour = -3600 * (time.getHours() % 12);
-    const mins = -60 * time.getMinutes();
-    const secs = -1 * time.getSeconds();
+  private setHands(now: Date) {
 
-    // Get the clockface element
-    let r = document.getElementById("clock-face");
-    this.reset_animation();
-    r?.style.setProperty('--_dm', `${mins}s`);
-    r?.style.setProperty('--_dh', `${hour + mins}s`);
-    r?.style.setProperty('--_ds', `${secs}s`);
-  }
-
-  private reset_animation() {
-    console.log("Resetting the animation...");
-    let elements = document.getElementsByClassName('arm');
-    console.log("number of elements of class arm: " + elements.length);
-    // for (let element of elements) {
-    for (let i = 0; i < elements.length; i++) {
-      let element = elements[i];
-      if (element instanceof HTMLElement) {
-        // console.log("element: ");
-        // console.log(element);
-        // element.classList.remove("arm");
-        element.style.animation = 'none';
-        element.offsetHeight; /* trigger reflow */
-        element.style.animation = '';
-        // element.classList.add("arm");
-      }
+    // console.log("in setHands.");
+    if (document.visibilityState === 'visible') {
+      // update the hands of the clock
+      this.degreesHours = (now.getHours() * 60 + now.getMinutes()) / (12 * 60) * 360;
+      this.degreesSeconds = (now.getSeconds() * 1000 + now.getMilliseconds()) / 60000 * 360;
+      this.degreesMinutes = now.getMinutes() / 60 * 360;
     }
   }
+
 
   // place items based on viewport dimensions
   private placeItems() {
@@ -190,27 +169,6 @@ export class ClockfaceComponent {
       root.style.setProperty('--line-border-horizontal', "none");
       root.style.setProperty('--line-border-vertical', "1px solid var(--foreground2)");
     }
-  }
-
-  private updateClockRegularly() {
-    setInterval(() => {
-      console.log("Calling setHands from updateClockRegularly setInterval...");
-      this.setHands();
-    }, 60 * 1000);
-  }
-
-  private millisecondsToNextMinute() {
-    // calculate next whole minute
-    const now = new Date();
-    const lastMinute = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate(),
-      now.getHours(),
-      now.getMinutes()
-    );
-    const nextMinute = lastMinute.valueOf() + 60 * 1000;
-    return nextMinute - now.valueOf();
   }
 
 
