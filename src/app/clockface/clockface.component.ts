@@ -113,11 +113,13 @@ export class ClockfaceComponent {
     for (let i = 0; i < elements.length; i++) {
       let element = elements[i];
       if (element instanceof HTMLElement) {
-        console.log("element: ");
-        console.log(element);
+        // console.log("element: ");
+        // console.log(element);
+        // element.classList.remove("arm");
         element.style.animation = 'none';
         element.offsetHeight; /* trigger reflow */
         element.style.animation = '';
+        // element.classList.add("arm");
       }
     }
   }
