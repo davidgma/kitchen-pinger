@@ -106,7 +106,9 @@ export class ClockfaceComponent {
   }
 
   private reset_animation() {
+    console.log("Resetting the animation...");
     let elements = document.getElementsByClassName('arm');
+    console.log("number of elements of class arm: " + elements.length);
     // for (let element of elements) {
     for (let i = 0; i < elements.length; i++) {
       let element = elements[i];
