@@ -1,6 +1,5 @@
 
-
-:root {
+body {
   --font-size: min(90vw / 15, 90vh / 15);
   --icon-size: min(90vw / 8, 90vh / 8);
   --clock-size: min(91vw, 91vh);
@@ -10,9 +9,6 @@
   --line-width: 100vw;
   --line-border-horizonal: 1px solid var(--foreground2);
   --line-border-vertical: none;
-}
-
-body {
   --container-direction: column;
   --foreground: #e8e8e8;
   --foreground2: #e8e8e8a0;

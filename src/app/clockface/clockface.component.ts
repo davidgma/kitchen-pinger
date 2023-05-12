@@ -68,7 +68,7 @@ export class ClockfaceComponent {
       }
     });
 
-    window.addEventListener('resize', this.placeItems);
+    window.addEventListener('resize', () => { this.placeItems(); });
 
     setInterval(() => {
       let now = new Date();
