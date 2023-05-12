@@ -4,10 +4,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ClockfaceComponent } from './clockface/clockface.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ClockfaceComponent
   ],
   imports: [
     BrowserModule,
