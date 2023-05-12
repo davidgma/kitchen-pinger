@@ -26,7 +26,7 @@ export class ClockfaceComponent {
 
     // Fill small diallines array
     for (let i = 6; i <= 354; i = i + 6) {
-      if (! this.dialLinesLarge.includes(i)) {
+      if (!this.dialLinesLarge.includes(i)) {
         this.dialLinesSmall.push(i);
       }
     }
@@ -37,14 +37,19 @@ export class ClockfaceComponent {
   initialize() {
     console.log('page loaded');
 
+    console.log("Calling setHands from initialize...");
     this.setHands();
     this.placeItems();
 
     console.log(
       'seconds to next whole minute: ' + this.millisecondsToNextMinute() / 1000
     );
-    setTimeout(() => {this.setHands();},
+    setTimeout(() => {
+      console.log("Calling setHands from initialize's setTimeout...");
+      this.setHands();
+    },
       this.millisecondsToNextMinute());
+
     setTimeout(() => { this.updateClockRegularly(); }, this.millisecondsToNextMinute());
 
     // let colourMode = document.getElementById('colour-mode');
@@ -64,6 +69,7 @@ export class ClockfaceComponent {
 
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState == 'visible') {
+        console.log("Calling setHands from visibilitychange event...");
         this.setHands();
       }
     });
@@ -84,7 +90,7 @@ export class ClockfaceComponent {
   private setHands() {
     /* to set current time */
     console.log("in setHands. this: ");
-    // console.log(this);
+    console.log(this);
     const time = new Date();
     const hour = -3600 * (time.getHours() % 12);
     const mins = -60 * time.getMinutes();
@@ -180,7 +186,10 @@ export class ClockfaceComponent {
   }
 
   private updateClockRegularly() {
-    setInterval(() => { this.setHands(); }, 60 * 1000);
+    setInterval(() => {
+      console.log("Calling setHands from updateClockRegularly setInterval...");
+      this.setHands();
+    }, 60 * 1000);
   }
 
   private millisecondsToNextMinute() {
