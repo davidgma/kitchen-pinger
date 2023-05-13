@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IntervalService } from '../interval.service';
 
 
 @Component({
@@ -14,8 +15,9 @@ export class ClockfaceComponent {
   degreesSeconds = 0;
   degreesMinutes = 0;
   degreesHours = 0;
+  // private clockUpdate: CustomEvent;
 
-  constructor() {
+  constructor(private intervalService: IntervalService) {
     console.log("In ClockfaceComponent");
 
     // Fill hours array
@@ -74,8 +76,18 @@ export class ClockfaceComponent {
 
     window.addEventListener('resize', () => { this.placeItems(); });
 
-    setInterval(() => {
+    // Set up an interval to subscribe to
+
+    // This uses quite a bit of cpu but is smooth :
+    // this.intervalService.start("clock-update", 20, false);
+    // This uses much less:
+    this.intervalService.start("clock-update", 1000, true);
+
+
+    this.intervalService.addEventListener('clock-update', () => {
+
       let now = new Date();
+      // console.log("milliseconds now: " + this.millisecondsToNextSecond());
 
       // Set the title text
       let time = now.getHours().toFixed().padStart(2, '0') + ":" + now.getMinutes().toFixed().padStart(2, '0')
@@ -87,8 +99,13 @@ export class ClockfaceComponent {
 
       // set the clock hands
       this.setHands(now);
+    });
 
-    }, 10);
+    // How to stop the interval
+    // setTimeout(() => {
+    //   this.intervalService.stop("clock-update");
+    // }, 10000);
+
   }
 
   private setHands(now: Date) {
@@ -169,6 +186,15 @@ export class ClockfaceComponent {
       root.style.setProperty('--line-border-horizontal', "none");
       root.style.setProperty('--line-border-vertical', "1px solid var(--foreground2)");
     }
+  }
+
+  // The number of milliseconds to the next whole second
+  private millisecondsToNextSecond(): number {
+    let now = new Date();
+    let nextSecond = new Date(now.getFullYear(), now.getMonth(),
+      now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds() + 1);
+    let ret = nextSecond.valueOf() - now.valueOf();
+    return ret;
   }
 
 
