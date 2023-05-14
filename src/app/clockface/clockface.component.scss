@@ -1,10 +1,5 @@
 
 #clock-face {
-  --transform-origin: 50% min(45vw, 45vh);
-  // --line-height: auto;
-  // --line-width: 100vw;
-  border-width: min(0.5vh, 0.5vw);
-  border-style: solid;
   border-radius: 50%;
   position: relative;
 
@@ -108,21 +103,4 @@
     box-shadow: 0 2px 4px -1px black;
   }
 
-  & .dialline {
-    position: absolute;
-    z-index: 2;
-    width: min(0.5vh, 0.5vw);
-    height: min(2vh, 2vw);
-    left: 50%;
-    transform-origin: var(--transform-origin);
-
-  }
-  & .dialline-large {
-    position: absolute;
-    z-index: 2;
-    width: min(1vh, 1vw);
-    height: min(4vh, 4vw);
-    left: 50%;
-    transform-origin: var(--transform-origin);
-  }
 }

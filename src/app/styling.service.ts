@@ -27,10 +27,32 @@ export class StylingService {
     "background-color": "green"
   };
 
-  public clockSizing: Sizing = {
+
+  // Used to style the clockface
+  public clockSizing: Object = {
     "font-size": "min(90vw / 15, 90vh / 15)",
     "width": "min(91vw, 91vh)",
-    "height": "min(91vw, 91vh)"
+    "height": "min(91vw, 91vh)",
+    "border-width": "min(0.5vh, 0.5vw)",
+    "border-style": "solid",
+    "border-radius": "50%"
+  }
+
+  public dialLineCommon: IDialLineCommon = {
+    "position": "absolute",
+    "z-index": 3,
+    "left": "49.5%",
+    "transform-origin": "50% min(45vw, 45vh)"
+  }
+
+  public dialLineLarge: Object = {
+    "width": "min(1vh, 1vw)",
+    "height": "min(4vh, 4vw)",
+  }
+
+  public dialLineSmall: Object = {
+    "width": "min(0.5vh, 0.5vw)",
+    "height": "min(2vh, 2vw)",
   }
 
   // public iconSizing: Sizing = {
@@ -92,10 +114,17 @@ interface ColourMode {
   "background-color": string;
 }
 
-interface Sizing {
-  "font-size": string;
-  "width": string;
-  "height": string;
-}
+// interface Sizing {
+//   "font-size": string;
+//   "width": string;
+//   "height": string;
+// }
 
+
+interface IDialLineCommon {
+  "position": string;
+  "z-index": number;
+  "left": string;
+  "transform-origin": string;
+}
 

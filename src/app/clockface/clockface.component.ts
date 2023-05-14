@@ -41,7 +41,7 @@ export class ClockfaceComponent {
 
     onload = () => this.initialize();
 
-    
+
   }
 
   ngAfterViewInit() {
@@ -128,7 +128,7 @@ export class ClockfaceComponent {
   private placeItems() {
     let vh = window.innerHeight;
     let vw = window.innerWidth;
-    let root = <HTMLElement>document.querySelector(':root');
+    // let root = <HTMLElement>document.querySelector(':root');
 
     // console.log('vh: ' + vh);
 
@@ -141,16 +141,22 @@ export class ClockfaceComponent {
       let transformSize = (clockSize - 5) / 2;
       let fontSize = clockSize / 15;
       let iconSize = clockSize / 10;
-      root.style.setProperty('--clock-size', clockSize.toFixed() + 'px');
-      root.style.setProperty('--font-size', fontSize.toFixed() + 'px');
-      root.style.setProperty('--transform-origin', '50% ' + transformSize.toFixed() + 'px');
-      root.style.setProperty('--nav-direction', "row");
-      root.style.setProperty('--container-direction', "column");
-      root.style.setProperty('--icon-size', iconSize.toFixed() + 'px');
-      root.style.setProperty('--line-height', "auto");
-      root.style.setProperty('--line-width', "100vw");
-      root.style.setProperty('--line-border-horizontal', "1px solid var(--foreground2)");
-      root.style.setProperty('--line-border-vertical', "none");
+      this.cs.clockSizing = {
+        "font-size": fontSize.toFixed() + 'px',
+        "width": clockSize.toFixed() + 'px',
+        "height": clockSize.toFixed() + 'px',
+        "border-width": "min(0.5vh, 0.5vw)",
+        "border-style": "solid",
+        "border-radius": "50%"
+      }
+      this.cs.dialLineCommon["transform-origin"] = '50% ' + transformSize.toFixed() + 'px';
+      // root.style.setProperty('--nav-direction', "row");
+      // root.style.setProperty('--container-direction', "column");
+      // root.style.setProperty('--icon-size', iconSize.toFixed() + 'px');
+      // root.style.setProperty('--line-height', "auto");
+      // root.style.setProperty('--line-width', "100vw");
+      // root.style.setProperty('--line-border-horizontal', "1px solid var(--foreground2)");
+      // root.style.setProperty('--line-border-vertical', "none");
     }
     // 2. There's enough space above and below
     else if (vh >= vw * 1.2) {
@@ -160,16 +166,22 @@ export class ClockfaceComponent {
       let transformSize = (clockSize - 4) / 2;
       let fontSize = clockSize / 15;
       let iconSize = clockSize / 10;
-      root.style.setProperty('--clock-size', clockSize.toFixed() + 'px');
-      root.style.setProperty('--font-size', fontSize.toFixed() + 'px');
-      root.style.setProperty('--icon-size', iconSize.toFixed() + 'px');
-      root.style.setProperty('--transform-origin', '50% ' + transformSize.toFixed() + 'px');
-      root.style.setProperty('--nav-direction', "row");
-      root.style.setProperty('--container-direction', "column");
-      root.style.setProperty('--line-height', "auto");
-      root.style.setProperty('--line-width', "100vw");
-      root.style.setProperty('--line-border-horizontal', "1px solid var(--foreground2)");
-      root.style.setProperty('--line-border-vertical', "none");
+      this.cs.clockSizing = {
+        "font-size": fontSize.toFixed() + 'px',
+        "width": clockSize.toFixed() + 'px',
+        "height": clockSize.toFixed() + 'px',
+        "transform-origin": '50% ' + transformSize.toFixed() + 'px',
+        "border-width": "min(0.5vh, 0.5vw)",
+        "border-style": "solid",
+        "border-radius": "50%"
+      }
+      this.cs.dialLineCommon["transform-origin"] = '50% ' + transformSize.toFixed() + 'px';
+      // root.style.setProperty('--nav-direction', "row");
+      // root.style.setProperty('--container-direction', "column");
+      // root.style.setProperty('--line-height', "auto");
+      // root.style.setProperty('--line-width', "100vw");
+      // root.style.setProperty('--line-border-horizontal', "1px solid var(--foreground2)");
+      // root.style.setProperty('--line-border-vertical', "none");
     }
     // 3. There's enough space to the left and right
     if (vw > vh * 1.2) {
@@ -179,20 +191,42 @@ export class ClockfaceComponent {
       let transformSize = (clockSize - 5) / 2;
       let fontSize = clockSize / 15;
       let iconSize = clockSize / 10;
-      root.style.setProperty('--clock-size', clockSize.toFixed() + 'px');
-      root.style.setProperty('--font-size', fontSize.toFixed() + 'px');
-      root.style.setProperty('--icon-size', iconSize.toFixed() + 'px');
-      root.style.setProperty('--transform-origin', '50% ' + transformSize.toFixed() + 'px');
-      root.style.setProperty('--nav-direction', "column");
-      root.style.setProperty('--container-direction', "row");
-      root.style.setProperty('--line-height', "100vh");
-      root.style.setProperty('--line-width', "auto");
-      root.style.setProperty('--line-border-horizontal', "none");
-      root.style.setProperty('--line-border-vertical', "1px solid var(--foreground2)");
+      this.cs.clockSizing = {
+        "font-size": fontSize.toFixed() + 'px',
+        "width": clockSize.toFixed() + 'px',
+        "height": clockSize.toFixed() + 'px',
+        "transform-origin": '50% ' + transformSize.toFixed() + 'px',
+        "border-width": "min(0.5vh, 0.5vw)",
+        "border-style": "solid",
+        "border-radius": "50%"
+      }
+      this.cs.dialLineCommon["transform-origin"] = '50% ' + transformSize.toFixed() + 'px';
+      // root.style.setProperty('--nav-direction', "column");
+      // root.style.setProperty('--container-direction', "row");
+      // root.style.setProperty('--line-height', "100vh");
+      // root.style.setProperty('--line-width', "auto");
+      // root.style.setProperty('--line-border-horizontal', "none");
+      // root.style.setProperty('--line-border-vertical', "1px solid var(--foreground2)");
     }
   }
 
+  getLargeStyles() {
+    return {
+      ...this.cs.getContrastMode(),
+      ...this.cs.dialLineCommon,
+      ...this.cs.dialLineLarge
+    };
+  }
 
+  getSmallStyles() {
+    // console.log("contrast: " + this.cs.getContrastMode());
+    let ret: Object = this.cs.getContrastMode();
+    return {
+      ...ret,
+      ...this.cs.dialLineCommon,
+      ...this.cs.dialLineSmall
+    };
+  }
 
 
 
