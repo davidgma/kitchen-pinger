@@ -1,9 +1,9 @@
-<section id="clock-face">
-  <div class="dot"></div>
+  <section id="clock-face" [style]="cs.getMode()" [style]="cs.clockSizing">
+  <div class="dot" [style]="cs.getContrastMode()"></div>
   <time *ngFor="let i of hours" id="h{{i}}">{{i}}</time>
   <span class="arm seconds" style.transform ="rotate({{degreesSeconds}}deg)"></span>
-  <span class="arm minutes" style.transform ="rotate({{degreesMinutes}}deg)"></span>
-  <span class="arm hours" style.transform ="rotate({{degreesHours}}deg)"></span>
-  <div class="dialline-large" *ngFor="let i of dialLinesLarge"  style.transform ="rotate({{i}}deg)"></div>
-  <div class="dialline" *ngFor="let i of dialLinesSmall"  style.transform ="rotate({{i}}deg)"></div>
+  <span class="arm minutes" [style]="cs.getContrastMode()" style.transform ="rotate({{degreesMinutes}}deg)"></span>
+  <span class="arm hours" [style]="cs.getContrastMode()" style.transform ="rotate({{degreesHours}}deg)"></span>
+  <div class="dialline-large" [style]="cs.getContrastMode()" *ngFor="let i of dialLinesLarge"  style.transform ="rotate({{i}}deg)"></div>
+  <div class="dialline" [style]="cs.getContrastMode()" *ngFor="let i of dialLinesSmall"  style.transform ="rotate({{i}}deg)"></div>
 </section>

@@ -1,7 +1,7 @@
-<body>
-  <h3>Kitchen Pinger 0.23</h3>
+<body [style]="cs.getMode()">
+  <h3>Kitchen Pinger 0.24</h3>
   <p>This is very much work in progress.</p>
-  <section id="all-screen">
+  <section id="all-screen" [style.flex-direction]="flexDirection">
     <app-clockface></app-clockface>
   </section>
 </body>

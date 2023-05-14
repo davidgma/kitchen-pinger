@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StylingService } from './styling.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'kitchen-pinger';
+  flexDirection = 'column';
+
+  constructor(public cs: StylingService) {
+
+  }
 }

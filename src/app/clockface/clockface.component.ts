@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IntervalService } from '../interval.service';
+import { StylingService } from '../styling.service';
 
 
 @Component({
@@ -15,9 +16,10 @@ export class ClockfaceComponent {
   degreesSeconds = 0;
   degreesMinutes = 0;
   degreesHours = 0;
-  // private clockUpdate: CustomEvent;
 
-  constructor(private intervalService: IntervalService) {
+
+  constructor(private intervalService: IntervalService,
+    public cs: StylingService) {
     console.log("In ClockfaceComponent");
 
     // Fill hours array
@@ -38,10 +40,12 @@ export class ClockfaceComponent {
     }
 
     onload = () => this.initialize();
+
+    
   }
 
   ngAfterViewInit() {
-    // setInterval(() => { this.setHands() }, 100);
+
   }
 
   initialize() {
@@ -188,14 +192,10 @@ export class ClockfaceComponent {
     }
   }
 
-  // The number of milliseconds to the next whole second
-  private millisecondsToNextSecond(): number {
-    let now = new Date();
-    let nextSecond = new Date(now.getFullYear(), now.getMonth(),
-      now.getDate(), now.getHours(), now.getMinutes(), now.getSeconds() + 1);
-    let ret = nextSecond.valueOf() - now.valueOf();
-    return ret;
-  }
+
+
+
+
 
 
 }
