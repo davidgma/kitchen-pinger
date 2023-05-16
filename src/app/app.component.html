@@ -1,7 +1,7 @@
-<body [style]="cs.mode">
-  <h3>Kitchen Pinger 0.27</h3>
-  <p>This is very much work in progress.</p>
-  <section id="all-screen" [style.flex-direction]="flexDirection">
+<body [ngStyle]="bodyStyle">
+  <section id="all-screen" [ngStyle]="screenStyle">
+    <app-header></app-header>
     <app-clockface></app-clockface>
+    <app-footer></app-footer>
   </section>
 </body>

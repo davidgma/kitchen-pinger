@@ -41,13 +41,13 @@ export class ClockfaceComponent {
       }
     }
 
+    cs.addEventListener('resize', () => { this.size(); });
     onload = () => this.initialize();
 
   }
 
-
   ngAfterViewInit() {
-
+    console.log("In ngAfterViewInit");
   }
 
   // Used to style the clockface
@@ -84,7 +84,7 @@ export class ClockfaceComponent {
   initialize() {
     console.log('Page loaded.');
 
-    this.placeItems();
+    //this.placeItems();
     this.setHands(new Date());
 
 
@@ -110,7 +110,7 @@ export class ClockfaceComponent {
     //   }
     // });
 
-    window.addEventListener('resize', () => { this.placeItems(); });
+
 
     // Set up an interval to subscribe to.
     // This uses quite a bit of cpu but is smooth:
@@ -154,47 +154,13 @@ export class ClockfaceComponent {
   }
 
 
-  // place items based on viewport dimensions
-  private placeItems() {
-    let vh = window.innerHeight;
-    let vw = window.innerWidth;
 
-    // 1. There's not enough space above or below
-    if (vh < vw * 1.2 && vw < vh * 1.2) {
-      console.log('not enough space above or below');
-      // Make the clock face smaller with some margin at the top and put the icons at the bottom.
-      // sizes in pixels but based on viewport sizes
-      let clockSize = 72 * vh / 100; // pixels
-      let transformSize = (clockSize - 5) / 2;
-      let fontSize = clockSize / 15;
-      this.size(clockSize, fontSize, transformSize);
-    }
-    // 2. There's enough space above and below
-    else if (vh >= vw * 1.2) {
-      console.log(' enough space above and below');
-      // sizes in pixels but based on viewport sizes
-      let clockSize = 91 * vw / 100; // pixels
-      let transformSize = (clockSize - 4) / 2;
-      let fontSize = clockSize / 15;
-      this.size(clockSize, fontSize, transformSize);
-    }
-    // 3. There's enough space to the left and right
-    if (vw > vh * 1.2) {
-      console.log('enough space left and right');
-      // sizes in pixels but based on viewport sizes
-      let clockSize = 91 * vh / 100; // pixels
-      let transformSize = (clockSize - 5) / 2;
-      let fontSize = clockSize / 15;
-      this.size(clockSize, fontSize, transformSize);
-    }
-  }
-
-  private size(clockSize: number, fontSize: number, transformSize: number) {
-    this.clockSizing["font-size"] = fontSize.toFixed() + 'px';
-    this.clockSizing["width"] = clockSize.toFixed() + 'px';
-    this.clockSizing["height"] = clockSize.toFixed() + 'px';
-    this.largeStyles["transform-origin"] = '50% ' + transformSize.toFixed() + 'px';
-    this.smallStyles["transform-origin"] = '50% ' + transformSize.toFixed() + 'px';
+  private size() {
+    this.clockSizing["font-size"] = this.cs.fontSize.toFixed() + 'px';
+    this.clockSizing["width"] = this.cs.clockSize.toFixed() + 'px';
+    this.clockSizing["height"] = this.cs.clockSize.toFixed() + 'px';
+    this.largeStyles["transform-origin"] = '50% ' + this.cs.transformSize.toFixed() + 'px';
+    this.smallStyles["transform-origin"] = '50% ' + this.cs.transformSize.toFixed() + 'px';
   }
 
 
