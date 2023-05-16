@@ -1,12 +1,30 @@
-  <section id="clock-face" [style]="cs.clockSizing">
-  <div class="dot" [style]="cs.getContrastMode()"></div>
-  <time *ngFor="let i of hours" id="h{{i}}">{{i}}</time>
-  <span class="arm seconds" style.transform ="rotate({{degreesSeconds}}deg)"></span>
-  <span class="arm minutes" [style]="cs.getContrastMode()" style.transform ="rotate({{degreesMinutes}}deg)"></span>
-  <span class="arm hours" [style]="cs.getContrastMode()" style.transform ="rotate({{degreesHours}}deg)"></span>
-
-  <div class="dialline-large" [style]="getLargeStyles()" *ngFor="let i of dialLinesLarge" style.transform ="rotate({{i}}deg)"></div>
-
-
-  <div class="dialline" [style]="getSmallStyles()" *ngFor="let i of dialLinesSmall"  style.transform ="rotate({{i}}deg)"></div>
+<section id="clock-face" [ngStyle]="clockSizing">
+  <div class="dot" [ngStyle]="cs.getContrastMode()"></div>
+  <time *ngFor="let i of hours" id="h{{ i }}">{{ i }}</time>
+  <span
+    class="arm seconds"
+    style.transform="rotate({{ degreesSeconds }}deg)"
+  ></span>
+  <span
+    class="arm minutes"
+    [ngStyle]="cs.getContrastMode()"
+    style.transform="rotate({{ degreesMinutes }}deg)"
+  ></span>
+  <span
+    class="arm hours"
+    [ngStyle]="cs.getContrastMode()"
+    style.transform="rotate({{ degreesHours }}deg)"
+  ></span>
+  <div
+    class="dialline-large"
+    [ngStyle]="largeStyles"
+    *ngFor="let i of dialLinesLarge"
+    style.transform="rotate({{ i }}deg)"
+  ></div>
+  <div
+    class="dialline"
+    [ngStyle]="smallStyles"
+    *ngFor="let i of dialLinesSmall"
+    style.transform="rotate({{ i }}deg)"
+  ></div>
 </section>

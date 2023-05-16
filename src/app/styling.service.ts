@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class StylingService {
+export class StylingService extends EventEmitter {
 
-  mode: ColourMode;
+  constructor() {
+    super();
+  }
 
   public darkMode: ColourMode = {
-    "color": "#e8e8e8",
-    "background-color": "#202020"
+    "color": "#e8e8e8", // off-white
+    "background-color": "#202020" // dark grey
   };
 
   public lightMode: ColourMode = {
@@ -28,32 +30,8 @@ export class StylingService {
   };
 
 
-  // Used to style the clockface
-  public clockSizing: Object = {
-    "font-size": "min(90vw / 15, 90vh / 15)",
-    "width": "min(91vw, 91vh)",
-    "height": "min(91vw, 91vh)",
-    "border-width": "min(0.5vh, 0.5vw)",
-    "border-style": "solid",
-    "border-radius": "50%"
-  }
 
-  public dialLineCommon: IDialLineCommon = {
-    "position": "absolute",
-    "z-index": 3,
-    "left": "49.5%",
-    "transform-origin": "50% min(45vw, 45vh)"
-  }
 
-  public dialLineLarge: Object = {
-    "width": "min(1vh, 1vw)",
-    "height": "min(4vh, 4vw)",
-  }
-
-  public dialLineSmall: Object = {
-    "width": "min(0.5vh, 0.5vw)",
-    "height": "min(2vh, 2vw)",
-  }
 
   // public iconSizing: Sizing = {
   //   "font-size": "min(90vw / 8, 90vh / 8)"
@@ -61,9 +39,7 @@ export class StylingService {
 
 
 
-  constructor() {
-    this.mode = this.darkMode;
-  }
+
 
   toggleColourMode(event: MouseEvent) {
     console.log('Toggling colour mode...');
@@ -91,11 +67,16 @@ export class StylingService {
     }
   }
 
-  public getMode(): ColourMode {
-    return this.mode;
+  private _mode: ColourMode = this.darkMode;
+  public get mode(): ColourMode {
+    return this._mode;
+  }
+  public set mode(newMode: ColourMode) {
+    this._mode = newMode;
   }
 
   public getContrastMode() {
+    // console.log("in getContrastMode. this.mode: " + this.mode);
     switch (this.mode) {
       case this.darkMode:
         return this.lightMode;
@@ -114,17 +95,6 @@ interface ColourMode {
   "background-color": string;
 }
 
-// interface Sizing {
-//   "font-size": string;
-//   "width": string;
-//   "height": string;
-// }
 
 
-interface IDialLineCommon {
-  "position": string;
-  "z-index": number;
-  "left": string;
-  "transform-origin": string;
-}
 
