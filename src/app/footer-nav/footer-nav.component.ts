@@ -34,7 +34,7 @@ export class FooterNavComponent {
 
   editOnStackblitz(event: MouseEvent) {
     if (window != null) {
-      window.open('https://stackblitz.com/edit/css-clock', '_blank');
+      window.open('https://stackblitz.com/edit/kitchen-pinger', '_blank');
     }
   }
 }
