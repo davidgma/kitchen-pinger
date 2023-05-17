@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { StylingService } from '../styling.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { StylingService } from '../styling.service';
 })
 export class IconHomeComponent {
 
+  @Input() iconSize = 80;
+
   style = {
     "height": "80px",
     "stroke": this.cs.mode.color,
@@ -16,10 +18,18 @@ export class IconHomeComponent {
   }
 
   constructor(public cs: StylingService) {
-    cs.addEventListener('resize', () => this.size());
   }
 
-  private size() {
-    this.style["height"] = this.cs.iconSize + "px";
+  ngOnChanges(changes: SimpleChanges) {
+    for (let variableName in changes) {
+      let change = changes[variableName];
+      if (variableName === "iconSize") {
+        this.size(change.currentValue);
+      }
+    }
+  }
+
+  private size(newSize: number) {
+    this.style["height"] = (newSize / this.cs.iconScale).toFixed() + "px";
   }
 }

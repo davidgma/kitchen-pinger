@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { IntervalService } from '../interval.service';
 import { StylingService } from '../styling.service';
 
@@ -18,6 +18,9 @@ export class ClockfaceComponent {
   degreesSeconds = 0;
   degreesMinutes = 0;
   degreesHours = 0;
+
+  // For getting the clock size from the parent component
+  @Input() clockSize = 0;
 
   constructor(private intervalService: IntervalService,
     public cs: StylingService) {
@@ -41,13 +44,21 @@ export class ClockfaceComponent {
       }
     }
 
-    cs.addEventListener('resize', () => { this.size(); });
     onload = () => this.initialize();
 
   }
 
   ngAfterViewInit() {
     console.log("In ngAfterViewInit");
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    for (let variableName in changes) {
+      let change = changes[variableName];
+      if (variableName === "clockSize") {
+        this.size( change.currentValue);
+      }
+    }
   }
 
   // Used to style the clockface
@@ -60,6 +71,7 @@ export class ClockfaceComponent {
     "border-radius": "50%"
   }
 
+  // For styling the small dial lines
   public smallStyles = {
     "position": "absolute",
     "z-index": 3,
@@ -70,7 +82,7 @@ export class ClockfaceComponent {
     ...this.cs.getContrastMode()
   }
 
-  // Starting point for dial line styles
+  // For styling the large dial lines
   public largeStyles = {
     "position": "absolute",
     "z-index": 3,
@@ -155,12 +167,12 @@ export class ClockfaceComponent {
 
 
 
-  private size() {
-    this.clockSizing["font-size"] = this.cs.fontSize.toFixed() + 'px';
-    this.clockSizing["width"] = this.cs.clockSize.toFixed() + 'px';
-    this.clockSizing["height"] = this.cs.clockSize.toFixed() + 'px';
-    this.largeStyles["transform-origin"] = '50% ' + this.cs.transformSize.toFixed() + 'px';
-    this.smallStyles["transform-origin"] = '50% ' + this.cs.transformSize.toFixed() + 'px';
+  private size(size: number) {
+    this.clockSizing["font-size"] = (size / 15).toFixed() + 'px';
+    this.clockSizing["width"] = size.toFixed() + 'px';
+    this.clockSizing["height"] = size.toFixed() + 'px';
+    this.largeStyles["transform-origin"] = '50% ' + ((size - 5) / 2).toFixed() + 'px';
+    this.smallStyles["transform-origin"] = '50% ' + ((size - 5) / 2).toFixed() + 'px';
   }
 
 
