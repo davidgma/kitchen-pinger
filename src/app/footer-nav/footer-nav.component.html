@@ -1,5 +1,12 @@
 <nav [ngStyle]="style">
-  <app-icon-home [iconSize]="cs.clockSize / cs.iconScale"  [strokeColour]="cs.mode.color"></app-icon-home>
-  
-  <app-icon-edit [iconSize]="cs.clockSize / cs.iconScale"  [strokeColour]="cs.mode.color"></app-icon-edit>
+  <app-icon-home
+    [iconSize]="cs.clockSize / cs.iconScale"
+    [strokeColour]="cs.mode.color"
+    (click)="openMainVersion($event)"
+  ></app-icon-home>
+  <app-icon-edit
+    [iconSize]="cs.clockSize / cs.iconScale"
+    [strokeColour]="cs.mode.color"
+    (click)="editOnStackblitz($event)"
+  ></app-icon-edit>
 </nav>

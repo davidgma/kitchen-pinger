@@ -25,5 +25,17 @@ export class FooterNavComponent {
     this.style["width"] = this.cs.lineWidth;
     this.style["height"] = this.cs.lineHeight;
   }
+
+  openMainVersion(event: MouseEvent) {
+    if (window != null) {
+      window.open('https://pinger.freshfood.rocks', '_blank');
+    }
+  }
+
+  editOnStackblitz(event: MouseEvent) {
+    if (window != null) {
+      window.open('https://stackblitz.com/edit/css-clock', '_blank');
+    }
+  }
 }
 
