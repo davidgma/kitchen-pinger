@@ -24,4 +24,13 @@ export class HeaderNavComponent {
     this.style["width"] = this.cs.lineWidth;
     this.style["height"] = this.cs.lineHeight;
   }
+
+  toggleColours() {
+    if (this.cs.mode === this.cs.darkMode) {
+      this.cs.mode = this.cs.lightMode
+    }
+    else {
+      this.cs.mode = this.cs.darkMode;
+    }
+  }
 }

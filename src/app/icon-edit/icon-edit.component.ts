@@ -1,5 +1,4 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { StylingService } from '../styling.service';
 
 @Component({
   selector: 'app-icon-edit',
@@ -10,14 +9,17 @@ export class IconEditComponent {
 
   @Input() iconSize = 80;
 
+  // For setting the stroke colour by the parent component
+  @Input() strokeColour = "green";
+
   style = {
     "height": "80px",
-    "stroke": this.cs.mode.color,
+    "stroke": this.strokeColour,
     "strokeWidth": "14",
     "fill": "grey"
   }
 
-  constructor(public cs: StylingService) {
+  constructor() {
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -26,10 +28,13 @@ export class IconEditComponent {
       if (variableName === "iconSize") {
         this.size(change.currentValue);
       }
+      if (variableName === "strokeColour") {
+        this.style["stroke"] = change.currentValue;
+      }
     }
   }
 
   private size(newSize: number) {
-    this.style["height"] = (newSize / this.cs.iconScale).toFixed() + "px";
+    this.style["height"] = newSize.toFixed() + "px";
   }
 }

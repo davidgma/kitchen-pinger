@@ -1,7 +1,11 @@
 <body [ngStyle]="bodyStyle">
   <section id="all-screen" [ngStyle]="screenStyle">
     <app-header></app-header>
-    <app-clockface [clockSize]="cs.clockSize"></app-clockface>
+    <app-clockface
+      [clockSize]="cs.clockSize"
+      [clockTime]="ts.time"
+      [colourStyles]="cs.mode"
+    ></app-clockface>
     <app-footer></app-footer>
   </section>
 </body>

@@ -1,6 +1,4 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
-import { IntervalService } from '../interval.service';
-import { StylingService } from '../styling.service';
 
 @Component({
   selector: 'app-clockface',
@@ -22,8 +20,15 @@ export class ClockfaceComponent {
   // For getting the clock size from the parent component
   @Input() clockSize = 0;
 
-  constructor(private intervalService: IntervalService,
-    public cs: StylingService) {
+  // For getting the clock time from the parent component
+  @Input() clockTime = new Date();
+
+  // For getting the background colour (which actually sets the colours of the hands, diallines and pin) from the parent component
+  @Input() colourStyles = {
+    "background-color": "green"
+  }
+
+  constructor() {
 
     console.log("In ClockfaceComponent");
 
@@ -44,25 +49,27 @@ export class ClockfaceComponent {
       }
     }
 
-    onload = () => this.initialize();
-
-  }
-
-  ngAfterViewInit() {
-    console.log("In ngAfterViewInit");
   }
 
   ngOnChanges(changes: SimpleChanges) {
     for (let variableName in changes) {
       let change = changes[variableName];
       if (variableName === "clockSize") {
-        this.size( change.currentValue);
+        this.size(change.currentValue);
+      }
+      if (variableName === "clockTime") {
+        this.setHands(change.currentValue);
+      }
+      if (variableName === "colourStyles") {
+        this.smallStyles['background-color'] = change.currentValue["color"];
+        this.largeStyles['background-color'] = change.currentValue["color"];
+        this.handsStyles['background-color'] = change.currentValue["color"];
       }
     }
   }
 
   // Used to style the clockface
-  public clockSizing: IClockSizing = {
+  public clockSizing = {
     "font-size": "min(90vw / 15, 90vh / 15)",
     "width": "min(91vw, 91vh)",
     "height": "min(91vw, 91vh)",
@@ -79,7 +86,7 @@ export class ClockfaceComponent {
     "transform-origin": "50% min(45vw, 45vh)",
     "width": "min(0.5vh, 0.5vw)",
     "height": "min(2vh, 2vw)",
-    ...this.cs.getContrastMode()
+    "background-color": "green"
   }
 
   // For styling the large dial lines
@@ -90,68 +97,12 @@ export class ClockfaceComponent {
     "transform-origin": "50% min(45vw, 45vh)",
     "width": "min(1vh, 1vw)",
     "height": "min(4vh, 4vw)",
-    ...this.cs.getContrastMode()
+    "background-color": "green"
   }
 
-  initialize() {
-    console.log('Page loaded.');
-
-    //this.placeItems();
-    this.setHands(new Date());
-
-
-    // let colourMode = document.getElementById('colour-mode');
-    // if (colourMode != null && colourMode instanceof HTMLElement) {
-    //   colourMode.addEventListener('click', toggleColourMode);
-    // }
-
-    // let edit = document.getElementById('edit');
-    // if (edit != null && edit instanceof HTMLElement) {
-    //   edit.addEventListener('click', editOnStackblitz);
-    // }
-
-    // let home = document.getElementById('home');
-    // if (home != null && home instanceof HTMLElement) {
-    //   home.addEventListener('click', openGithubVersion);
-    // }
-
-    // document.addEventListener('visibilitychange', () => {
-    //   if (document.visibilityState == 'visible') {
-    //     console.log("Calling setHands from visibilitychange event...");
-    //     // this.setHands();
-    //   }
-    // });
-
-
-
-    // Set up an interval to subscribe to.
-    // This uses quite a bit of cpu but is smooth:
-    // this.intervalService.start("clock-update", 40, false);
-    // This uses much less cpu and ticks:
-    this.intervalService.start("clock-update", 1000, true);
-
-
-    this.intervalService.addEventListener('clock-update', () => {
-
-      let now = new Date();
-
-      // Set the title text
-      let time = now.getHours().toFixed().padStart(2, '0') + ":" + now.getMinutes().toFixed().padStart(2, '0')
-        + ":" + now.getSeconds().toFixed().padStart(2, '0')
-        ;
-      if (document.title !== time) {
-        document.title = time;
-      }
-
-      // set the clock hands
-      this.setHands(now);
-    });
-
-    // How to stop the interval
-    // setTimeout(() => {
-    //   this.intervalService.stop("clock-update");
-    // }, 10000);
-
+  // For styling the colour of the hands and central pin
+  handsStyles = {
+    "background-color": "green"
   }
 
   private setHands(now: Date) {
@@ -165,8 +116,6 @@ export class ClockfaceComponent {
     }
   }
 
-
-
   private size(size: number) {
     this.clockSizing["font-size"] = (size / 15).toFixed() + 'px';
     this.clockSizing["width"] = size.toFixed() + 'px';
@@ -178,20 +127,3 @@ export class ClockfaceComponent {
 
 } // End of ClockfaceComponent
 
-interface IDialLine {
-  "position": string;
-  "z-index": number;
-  "left": string;
-  "transform-origin": string;
-  "width": string;
-  "height": string;
-}
-
-interface IClockSizing {
-  "font-size": string;
-  "width": string;
-  "height": string;
-  "border-width": string;
-  "border-style": string;
-  "border-radius": string;
-}

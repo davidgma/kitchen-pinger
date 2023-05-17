@@ -1,3 +1,11 @@
 <nav [ngStyle]="style">
-  <app-icon-settings [iconSize]="cs.clockSize"></app-icon-settings>
+  <app-icon-settings
+    [iconSize]="cs.clockSize / cs.iconScale"
+    [strokeColour]="cs.mode.color"
+  ></app-icon-settings>
+  <app-icon-day
+    [iconSize]="cs.clockSize / cs.iconScale"
+    [strokeColour]="cs.mode.color"
+    (click)="toggleColours()"
+  ></app-icon-day>
 </nav>

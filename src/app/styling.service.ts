@@ -5,24 +5,26 @@ import { EventEmitter, Injectable } from '@angular/core';
 })
 export class StylingService extends EventTarget {
 
-  #clockSize = 500;
-  get clockSize() { return this.#clockSize; }
-  set clockSize(size: number) {
-    this.#clockSize = size;
-    // this.dispatchEvent(new CustomEvent('clockSize', { detail: this.#clockSize }));
-  }
-
+  clockSize: number = 500;
   iconScale = 10;
-  public mode: ColourMode;
-  public containerDirection: string;
-  public navDirection: string;
-  public lineWidth: string;
-  public lineHeight: string;
+  // mode: ColourMode;
+  containerDirection: string;
+  navDirection: string;
+  lineWidth: string;
+  lineHeight: string;
+
+  #mode: ColourMode;
+  get mode() { return this.#mode; }
+
+  set mode(newMode: ColourMode) {
+    this.#mode = newMode;
+    this.dispatchEvent(new Event("colour-mode"));
+  }
 
   constructor() {
     super();
     console.log("In StylingService");
-    this.mode = this.darkMode;
+    this.#mode = this.darkMode;
     this.containerDirection = "column";
     this.navDirection = "row";
     this.lineWidth = "100vw";
@@ -53,47 +55,47 @@ export class StylingService extends EventTarget {
     "background-color": "green"
   };
 
-  toggleColourMode(event: MouseEvent) {
-    console.log('Toggling colour mode...');
-    console.log(event.target);
-    let targetElement = event.target;
-    if (targetElement != null && targetElement instanceof HTMLElement) {
-      console.log(targetElement.innerText);
-      if (targetElement.innerText === 'light_mode') {
-        targetElement.innerText = 'nightlight';
-      } else {
-        targetElement.innerText = 'light_mode';
-      }
-    }
-    let root = document.documentElement;
-    let background = getComputedStyle(root).getPropertyValue('--background');
-    if (background === '#E8E8E8') {
-      root.style.setProperty('--background', '#202020');
-      root.style.setProperty('--foreground', '#E8E8E8');
-      root.style.setProperty('--foreground2', '#E8E8E8a0');
-    }
-    else {
-      root.style.setProperty('--background', '#E8E8E8');
-      root.style.setProperty('--foreground', '#202020');
-      root.style.setProperty('--foreground2', '#202020ed');
-    }
-  }
+  // toggleColourMode(event: MouseEvent) {
+  //   console.log('Toggling colour mode...');
+  //   console.log(event.target);
+  //   let targetElement = event.target;
+  //   if (targetElement != null && targetElement instanceof HTMLElement) {
+  //     console.log(targetElement.innerText);
+  //     if (targetElement.innerText === 'light_mode') {
+  //       targetElement.innerText = 'nightlight';
+  //     } else {
+  //       targetElement.innerText = 'light_mode';
+  //     }
+  //   }
+  //   let root = document.documentElement;
+  //   let background = getComputedStyle(root).getPropertyValue('--background');
+  //   if (background === '#E8E8E8') {
+  //     root.style.setProperty('--background', '#202020');
+  //     root.style.setProperty('--foreground', '#E8E8E8');
+  //     root.style.setProperty('--foreground2', '#E8E8E8a0');
+  //   }
+  //   else {
+  //     root.style.setProperty('--background', '#E8E8E8');
+  //     root.style.setProperty('--foreground', '#202020');
+  //     root.style.setProperty('--foreground2', '#202020ed');
+  //   }
+  // }
 
 
 
-  public getContrastMode() {
-    // console.log("in getContrastMode. this.mode: " + this.mode);
-    switch (this.mode) {
-      case this.darkMode:
-        return this.lightMode;
-      case this.lightMode:
-        return this.darkMode;
-      case this.greenMode:
-        return this.greenModeOffset;
-      default:
-        return this.darkMode;
-    }
-  }
+  // public getContrastMode() {
+  //   // console.log("in getContrastMode. this.mode: " + this.mode);
+  //   switch (this.mode) {
+  //     case this.darkMode:
+  //       return this.lightMode;
+  //     case this.lightMode:
+  //       return this.darkMode;
+  //     case this.greenMode:
+  //       return this.greenModeOffset;
+  //     default:
+  //       return this.darkMode;
+  //   }
+  // }
 
   // place items based on viewport dimensions
   private placeItems() {
@@ -136,9 +138,6 @@ export class StylingService extends EventTarget {
       if (this.clockSize !== 91 * vh / 100) {
         this.clockSize = 91 * vh / 100; // pixels
       }
-      // this.transformSize = (this.clockSize - 5) / 2;
-      // this.fontSize = this.clockSize / 15;
-      // this.iconSize = this.clockSize / iconScale;
       this.containerDirection = "row";
       this.navDirection = "column";
       this.lineWidth = "auto";

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { StylingService } from './styling.service';
+import { TimeService } from './time.service';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,16 @@ import { StylingService } from './styling.service';
 export class AppComponent {
 
   title = 'pinger';
+
+  constructor(public cs: StylingService, public ts: TimeService) {
+    cs.addEventListener('resize', () => this.size());
+    cs.addEventListener('colour-mode', () => {
+      this.bodyStyle.color = this.cs.mode["color"];
+      this.bodyStyle['background-color'] = this.cs.mode["background-color"];
+    });
+    ts.setToCurrentTime();
+    onload = () => { console.log('Page loaded.'); };
+  }
 
   bodyStyle = {
     "font-family": "Arial, Helvetica, sans-serif",
@@ -29,12 +40,13 @@ export class AppComponent {
     "padding": "20px"
   }
 
-  constructor(public cs: StylingService) {
-    cs.addEventListener('resize', () => this.size());
-  }
 
   ngOnInit() {
     console.log("In ngOnInit");
+  }
+
+  ngAfterViewInit() {
+    console.log("In ngAfterViewInit");
   }
 
   private size() {
@@ -42,7 +54,3 @@ export class AppComponent {
   }
 }
 
-// interface IBodyStyle {
-//   "color": string;
-//   "background-color": string;
-// }

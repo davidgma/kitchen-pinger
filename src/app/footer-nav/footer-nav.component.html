@@ -1,5 +1,5 @@
 <nav [ngStyle]="style">
-  <app-icon-home [iconSize]="cs.clockSize"></app-icon-home>
-  <app-icon-day [iconSize]="cs.clockSize"></app-icon-day>
-  <app-icon-edit [iconSize]="cs.clockSize"></app-icon-edit>
+  <app-icon-home [iconSize]="cs.clockSize / cs.iconScale"  [strokeColour]="cs.mode.color"></app-icon-home>
+  
+  <app-icon-edit [iconSize]="cs.clockSize / cs.iconScale"  [strokeColour]="cs.mode.color"></app-icon-edit>
 </nav>

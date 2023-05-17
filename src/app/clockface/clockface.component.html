@@ -1,5 +1,5 @@
 <section id="clock-face" [ngStyle]="clockSizing">
-  <div class="dot" [ngStyle]="cs.getContrastMode()"></div>
+  <div class="dot" [ngStyle]="handsStyles"></div>
   <time *ngFor="let i of hours" id="h{{ i }}">{{ i }}</time>
   <span
     class="arm seconds"
@@ -7,12 +7,12 @@
   ></span>
   <span
     class="arm minutes"
-    [ngStyle]="cs.getContrastMode()"
+    [ngStyle]="handsStyles"
     style.transform="rotate({{ degreesMinutes }}deg)"
   ></span>
   <span
     class="arm hours"
-    [ngStyle]="cs.getContrastMode()"
+    [ngStyle]="handsStyles"
     style.transform="rotate({{ degreesHours }}deg)"
   ></span>
   <div
