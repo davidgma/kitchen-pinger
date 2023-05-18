@@ -1,4 +1,6 @@
 <section id="clock-face" [ngStyle]="clockSizing">
+  <!-- <div id="vertical-line"></div>
+  <div id="horizontal-line"></div> -->
   <div class="dot" [ngStyle]="handsStyles"></div>
   <time *ngFor="let i of hours" id="h{{ i }}">{{ i }}</time>
   <span

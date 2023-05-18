@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, Output } from '@angular/core';
 
 @Component({
   selector: 'app-clockface',
@@ -27,6 +27,11 @@ export class ClockfaceComponent {
   @Input() colourStyles = {
     "background-color": "green"
   }
+
+  // For alerting the parent when the clockface is clicked
+  // @Output() cli
+
+
 
   constructor() {
 
@@ -74,15 +79,17 @@ export class ClockfaceComponent {
     "width": "min(91vw, 91vh)",
     "height": "min(91vw, 91vh)",
     "border-width": "min(0.5vh, 0.5vw)",
-    "border-style": "solid",
-    "border-radius": "50%"
+    "border-style": "solid"
   }
 
   // For styling the small dial lines
   public smallStyles = {
     "position": "absolute",
     "z-index": 3,
-    "left": "49.5%",
+    "margin-right": "auto",
+    "margin-left": "auto",
+    "left": "0",
+    "right": "0",
     "transform-origin": "50% min(45vw, 45vh)",
     "width": "min(0.5vh, 0.5vw)",
     "height": "min(2vh, 2vw)",
@@ -93,7 +100,10 @@ export class ClockfaceComponent {
   public largeStyles = {
     "position": "absolute",
     "z-index": 3,
-    "left": "49.5%",
+    "margin-right": "auto",
+    "margin-left": "auto",
+    "left": "0",
+    "right": "0",
     "transform-origin": "50% min(45vw, 45vh)",
     "width": "min(1vh, 1vw)",
     "height": "min(4vh, 4vw)",
@@ -117,11 +127,11 @@ export class ClockfaceComponent {
   }
 
   private size(size: number) {
-    this.clockSizing["font-size"] = (size / 15).toFixed() + 'px';
-    this.clockSizing["width"] = size.toFixed() + 'px';
-    this.clockSizing["height"] = size.toFixed() + 'px';
-    this.largeStyles["transform-origin"] = '50% ' + ((size - 5) / 2).toFixed() + 'px';
-    this.smallStyles["transform-origin"] = '50% ' + ((size - 5) / 2).toFixed() + 'px';
+    this.clockSizing["font-size"] = (size / 15) + 'px';
+    this.clockSizing["width"] = size + 'px';
+    this.clockSizing["height"] = size + 'px';
+    this.largeStyles["transform-origin"] = '50% ' + ((size - 3)/2) + 'px';
+    this.smallStyles["transform-origin"] = '50% ' + ((size - 3)/2) + 'px';
   }
 
 

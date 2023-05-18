@@ -18,6 +18,7 @@ export class IconDayComponent {
     "stroke": this.strokeColour,
     "strokeWidth": "14",
     "fill": "grey"
+
   }
 
   constructor() {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StylingService } from './styling.service';
 import { TimeService } from './time.service';
 
@@ -7,7 +7,7 @@ import { TimeService } from './time.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   title = 'pinger';
 
@@ -43,6 +43,17 @@ export class AppComponent {
 
   ngOnInit() {
     console.log("In ngOnInit");
+
+    // Useful for future reference:
+    // onfocus = () => { console.log('App focused.'); };
+    // document.onvisibilitychange = ((event) => {
+    //   console.log("Visibility: " + document.visibilityState);
+    // });
+    // This syntax seems to work for element events
+    // https://developer.mozilla.org/en-US/docs/Web/API/Element
+    // onkeydown = () => { console.log('key down.'); };
+    // console.log("ariaCurrent: " + frameElement?.ariaCurrent);
+
   }
 
   ngAfterViewInit() {
@@ -52,5 +63,15 @@ export class AppComponent {
   private size() {
     this.screenStyle["flex-direction"] = this.cs.containerDirection;
   }
+
+  // This worked:
+  // in template: (onclick)="clockClicked($event)"
+  // clockClicked(event: Event) {
+  //   console.log("The clockface was clicked.");
+  //   console.log(event);
+  // }
+
+
+
 }
 

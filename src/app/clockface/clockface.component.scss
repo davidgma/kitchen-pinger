@@ -1,7 +1,30 @@
-
 #clock-face {
   border-radius: 50%;
   position: relative;
+  border-width: min(0.5vh, 0.5vw);
+  border-style: solid;
+
+  & #vertical-line {
+    position: absolute;
+    height: 100%;
+    width: 1px;
+    left: 50%;
+    border-width: 1px;
+    border-color: green;
+    border-style: dashed;
+    z-index: 11;
+  }
+
+  & #horizontal-line {
+    position: absolute;
+    height: 1px;
+    width: 100%;
+    top: 50%;
+    border-width: 1px;
+    border-color: green;
+    border-style: dashed;
+    z-index: 11;
+  }
 
   & time {
     position: absolute;
@@ -62,18 +85,26 @@
   }
 
   & .seconds {
+    position: absolute;
     bottom: 50%;
-    left: 49.5%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
     background-color: red;
     height: 45%;
     width: min(1vh, 1vw);
     border-radius: calc(1cqi * 2);
-    z-index: 7;
+    z-index: 1;
   }
 
   & .minutes {
+    position: absolute;
     bottom: 50%;
-    left: 48.5%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
     height: 37%;
     width: min(2.5vh, 2.5vw);
     border-radius: calc(2.5cqi * 2);
@@ -81,8 +112,12 @@
   }
 
   & .hours {
+    position: absolute;
     bottom: 50%;
-    left: 48.5%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
     height: 26%;
     width: min(2.5vh, 2.5vw);
     border-radius: calc(2.5cqi * 2);
@@ -102,5 +137,4 @@
     z-index: 10;
     box-shadow: 0 2px 4px -1px black;
   }
-
 }
