@@ -29,8 +29,13 @@ export class StylingService extends EventTarget {
     this.navDirection = "row";
     this.lineWidth = "100vw";
     this.lineHeight = "auto";
-    window.addEventListener('resize', () => { this.placeItems(); });
+    window.addEventListener('resize', () => {
+      // console.log("in resize styling service");
+      this.placeItems();
+    });
     document.addEventListener('DOMContentLoaded', () => {
+    // document.addEventListener('readystatechange', (event) => {
+      // console.log("readystate: " + JSON.stringify(event));
       this.placeItems();
     });
   }
@@ -56,11 +61,14 @@ export class StylingService extends EventTarget {
   };
 
   // place items based on viewport dimensions
-  private placeItems() {
+  placeItems() {
     console.log("In placeItems");
 
     let vh = window.innerHeight;
     let vw = window.innerWidth;
+
+    // console.log("vw: " + vw);
+
 
     // 1. There's not enough space above or below
     if (vh < vw * 1.3 && vw < vh * 1.3) {

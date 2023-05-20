@@ -11,6 +11,12 @@ export class AppComponent implements OnInit {
 
   title = 'pinger';
 
+  // For monitoring the viewport height and width because
+  // for some reason there's a lag between the window load
+  // and the final values
+  vw = 0;
+  vh = 0;
+
   constructor(public cs: StylingService, public ts: TimeService) {
     cs.addEventListener('resize', () => this.size());
     cs.addEventListener('colour-mode', () => {
@@ -18,10 +24,10 @@ export class AppComponent implements OnInit {
       this.bodyStyle['background-color'] = this.cs.mode["background-color"];
     });
     ts.setToCurrentTime();
-    // onload = () => {
-    //   console.log('Page loaded.');
-    //   this.cs.placeItems();
-    // };
+    onload = () => {
+      console.log('Page loaded.');
+      this.cs.placeItems();
+    };
   }
 
   bodyStyle = {
@@ -59,8 +65,29 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngAfterViewInit() {
-    console.log("In ngAfterViewInit");
+  // ngAfterContentInit() {
+  //   console.log("In ngAfterContentInit");
+  // }
+
+  // ngAfterViewInit() {
+  //   console.log("In ngAfterViewInit");
+  // }
+
+  // ngAfterViewChecked() {
+  //   console.log("In ngAfterViewChecked");
+
+  // }
+
+  ngDoCheck() {
+    // console.log("In ngDoCheck");
+    if (window.innerHeight !== this.vh) {
+      this.vh = window.innerHeight;
+      this.cs.placeItems();
+    }
+    if (window.innerWidth !== this.vw) {
+      this.vw = window.innerWidth;
+      this.cs.placeItems();
+    }
   }
 
   private size() {
