@@ -2,10 +2,12 @@
   <app-icon-settings
     [iconSize]="cs.clockSize / cs.iconScale"
     [strokeColour]="cs.mode.color"
+    title="Settings"
   ></app-icon-settings>
   <app-icon-day
     [iconSize]="cs.clockSize / cs.iconScale"
     [strokeColour]="cs.mode.color"
     (click)="toggleColours()"
+    title="Toggle colour mode"
   ></app-icon-day>
 </nav>
