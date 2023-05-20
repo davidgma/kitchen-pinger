@@ -18,7 +18,10 @@ export class AppComponent implements OnInit {
       this.bodyStyle['background-color'] = this.cs.mode["background-color"];
     });
     ts.setToCurrentTime();
-    onload = () => { console.log('Page loaded.'); };
+    // onload = () => {
+    //   console.log('Page loaded.');
+    //   this.cs.placeItems();
+    // };
   }
 
   bodyStyle = {

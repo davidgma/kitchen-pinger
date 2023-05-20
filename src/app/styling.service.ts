@@ -30,10 +30,10 @@ export class StylingService extends EventTarget {
     this.lineWidth = "100vw";
     this.lineHeight = "auto";
     window.addEventListener('resize', () => { this.placeItems(); });
-    window.addEventListener('load', () => { this.placeItems(); });
-    // onload = () => this.placeItems();
+    document.addEventListener('DOMContentLoaded', () => {
+      this.placeItems();
+    });
   }
-
 
   public darkMode: ColourMode = {
     "color": "#e8e8e8", // off-white
@@ -54,48 +54,6 @@ export class StylingService extends EventTarget {
     "color": "gray",
     "background-color": "green"
   };
-
-  // toggleColourMode(event: MouseEvent) {
-  //   console.log('Toggling colour mode...');
-  //   console.log(event.target);
-  //   let targetElement = event.target;
-  //   if (targetElement != null && targetElement instanceof HTMLElement) {
-  //     console.log(targetElement.innerText);
-  //     if (targetElement.innerText === 'light_mode') {
-  //       targetElement.innerText = 'nightlight';
-  //     } else {
-  //       targetElement.innerText = 'light_mode';
-  //     }
-  //   }
-  //   let root = document.documentElement;
-  //   let background = getComputedStyle(root).getPropertyValue('--background');
-  //   if (background === '#E8E8E8') {
-  //     root.style.setProperty('--background', '#202020');
-  //     root.style.setProperty('--foreground', '#E8E8E8');
-  //     root.style.setProperty('--foreground2', '#E8E8E8a0');
-  //   }
-  //   else {
-  //     root.style.setProperty('--background', '#E8E8E8');
-  //     root.style.setProperty('--foreground', '#202020');
-  //     root.style.setProperty('--foreground2', '#202020ed');
-  //   }
-  // }
-
-
-
-  // public getContrastMode() {
-  //   // console.log("in getContrastMode. this.mode: " + this.mode);
-  //   switch (this.mode) {
-  //     case this.darkMode:
-  //       return this.lightMode;
-  //     case this.lightMode:
-  //       return this.darkMode;
-  //     case this.greenMode:
-  //       return this.greenModeOffset;
-  //     default:
-  //       return this.darkMode;
-  //   }
-  // }
 
   // place items based on viewport dimensions
   private placeItems() {
