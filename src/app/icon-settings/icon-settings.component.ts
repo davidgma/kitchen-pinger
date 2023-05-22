@@ -17,7 +17,8 @@ export class IconSettingsComponent {
     "width": "90px",
     "stroke": this.strokeColour,
     "strokeWidth": "3",
-    "fill": "grey"
+    "fill": "grey",
+    "padding": "10px"
   }
 
   constructor() {

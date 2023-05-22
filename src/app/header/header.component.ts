@@ -17,14 +17,14 @@ export class HeaderComponent {
     "height": this.cs.lineHeight,
     "display": "flex",
     "flex-direction": this.cs.containerDirection,
+    // "margin-top": "10px"
   }
 
   lineStyle = {
     "width": this.cs.lineWidth,
     "height": "auto",
     "border-bottom": "1px solid",
-    "border-right": "none",
-    "padding": "5px"
+    "border-right": "none"
   }
 
   private size() {

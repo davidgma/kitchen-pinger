@@ -1,11 +1,11 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-icon-edit',
-  templateUrl: './icon-edit.component.html',
-  styleUrls: ['./icon-edit.component.scss']
+  selector: 'app-icon-stopwatch',
+  templateUrl: './icon-stopwatch.component.html',
+  styleUrls: ['./icon-stopwatch.component.scss']
 })
-export class IconEditComponent {
+export class IconStopwatchComponent {
 
   @Input() iconSize = 80;
 
@@ -14,8 +14,9 @@ export class IconEditComponent {
 
   style = {
     "height": "80px",
+    "width": "90px",
     "stroke": this.strokeColour,
-    "strokeWidth": "14",
+    "strokeWidth": "3",
     "fill": "grey",
     "padding": "10px"
   }
@@ -36,6 +37,7 @@ export class IconEditComponent {
   }
 
   private size(newSize: number) {
-    this.style["height"] = newSize.toFixed() + "px";
+    this.style["height"] = (newSize * 0.9).toFixed() + "px";
+    this.style["width"] = (newSize * 1).toFixed() + "px";
   }
 }

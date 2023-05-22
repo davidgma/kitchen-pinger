@@ -16,7 +16,8 @@ export class HeaderNavComponent {
     "flex-direction": this.cs.navDirection,
     "width": this.cs.lineWidth,
     "height": this.cs.lineHeight,
-    "justify-content": "space-around"
+    "justify-content": "space-around",
+    "align-items": "center"
   }
 
   private size() {

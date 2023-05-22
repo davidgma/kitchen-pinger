@@ -79,7 +79,8 @@ export class ClockfaceComponent {
     "width": "min(91vw, 91vh)",
     "height": "min(91vw, 91vh)",
     "border-width": "min(0.5vh, 0.5vw)",
-    "border-style": "solid"
+    "border-style": "solid",
+    "margin": "auto"
   }
 
   // For styling the small dial lines

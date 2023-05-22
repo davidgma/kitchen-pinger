@@ -16,7 +16,8 @@ export class IconHomeComponent {
     "height": "80px",
     "stroke": this.strokeColour,
     "strokeWidth": "14",
-    "fill": "grey"
+    "fill": "grey",
+    "padding": "10px"
   }
 
   constructor() {

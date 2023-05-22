@@ -1,19 +1,23 @@
 import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ClockfaceComponent } from './clockface/clockface.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
 import { IconSettingsComponent } from './icon-settings/icon-settings.component';
 import { IconHomeComponent } from './icon-home/icon-home.component';
-import { FooterComponent } from './footer/footer.component';
+import { IconStopwatchComponent } from './icon-stopwatch/icon-stopwatch.component';
 import { IconDayComponent } from './icon-day/icon-day.component';
 import { IconEditComponent } from './icon-edit/icon-edit.component';
-import { FooterNavComponent } from './footer-nav/footer-nav.component';
+import { HeaderComponent } from './header/header.component';
 import { HeaderNavComponent } from './header-nav/header-nav.component';
+import { FooterNavComponent } from './footer-nav/footer-nav.component';
+import { FooterComponent } from './footer/footer.component';
+import { PageClockComponent } from './page-clock/page-clock.component';
+import { PageStopwatchComponent } from './page-stopwatch/page-stopwatch.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,10 @@ import { HeaderNavComponent } from './header-nav/header-nav.component';
     IconDayComponent,
     IconEditComponent,
     FooterNavComponent,
-    HeaderNavComponent
+    HeaderNavComponent,
+    IconStopwatchComponent,
+    PageClockComponent,
+    PageStopwatchComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +44,8 @@ import { HeaderNavComponent } from './header-nav/header-nav.component';
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

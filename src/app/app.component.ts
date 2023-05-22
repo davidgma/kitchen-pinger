@@ -43,10 +43,10 @@ export class AppComponent implements OnInit {
     "position": "relative",
     "height": "100%",
     "display": "flex",
-    "align-items": "center",
     "justify-content": "space-between",
     "flex-direction": this.cs.containerDirection,
-    "padding": "20px"
+    // "align-items": "center",
+    // "padding": "20px"
   }
 
 

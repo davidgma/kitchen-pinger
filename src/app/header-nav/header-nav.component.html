@@ -1,4 +1,10 @@
 <nav [ngStyle]="style">
+
+  <app-icon-stopwatch
+    [iconSize]="cs.clockSize / cs.iconScale"
+    [strokeColour]="cs.mode.color"
+    title="Stopwatch">
+  </app-icon-stopwatch>
   <app-icon-settings
     [iconSize]="cs.clockSize / cs.iconScale"
     [strokeColour]="cs.mode.color"

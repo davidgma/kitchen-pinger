@@ -17,7 +17,8 @@ export class IconDayComponent {
     "height": this.iconSize.toFixed()  + "px",
     "stroke": this.strokeColour,
     "strokeWidth": "14",
-    "fill": "grey"
+    "fill": "grey",
+    "padding": "10px"
 
   }
 

@@ -6,7 +6,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 export class StylingService extends EventTarget {
 
   clockSize: number = 500;
-  iconScale = 10;
+  iconScale = 8;
   // mode: ColourMode;
   containerDirection: string;
   navDirection: string;

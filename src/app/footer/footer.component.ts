@@ -24,8 +24,7 @@ export class FooterComponent {
     "width": this.cs.lineWidth,
     "height": "auto",
     "border-top": "1px solid",
-    "border-left": "none",
-    "padding": "5px"
+    "border-left": "none"
   }
 
   private size() {
