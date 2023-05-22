@@ -18,6 +18,8 @@ import { FooterNavComponent } from './footer-nav/footer-nav.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageClockComponent } from './page-clock/page-clock.component';
 import { PageStopwatchComponent } from './page-stopwatch/page-stopwatch.component';
+import { PageWrapperComponent } from './page-wrapper/page-wrapper.component';
+import { IconClockComponent } from './icon-clock/icon-clock.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { PageStopwatchComponent } from './page-stopwatch/page-stopwatch.componen
     HeaderNavComponent,
     IconStopwatchComponent,
     PageClockComponent,
-    PageStopwatchComponent
+    PageStopwatchComponent,
+    PageWrapperComponent,
+    IconClockComponent
   ],
   imports: [
     BrowserModule,

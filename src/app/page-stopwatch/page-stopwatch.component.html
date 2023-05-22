@@ -1,1 +1,7 @@
-
+<section id="page" [ngStyle]="screenStyle">
+  <app-clockface
+    [clockSize]="cs.clockSize"
+    [colourStyles]="cs.mode"
+  ></app-clockface>
+  <app-footer></app-footer>
+</section>

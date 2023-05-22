@@ -1,9 +1,17 @@
 <nav [ngStyle]="style">
-
+  <app-icon-clock
+    [iconSize]="cs.clockSize / cs.iconScale"
+    [strokeColour]="cs.mode.color"
+    title="Clock"
+    [routerLink]="'clock'"
+  >
+  </app-icon-clock>
   <app-icon-stopwatch
     [iconSize]="cs.clockSize / cs.iconScale"
     [strokeColour]="cs.mode.color"
-    title="Stopwatch">
+    title="Stopwatch"
+    [routerLink]="'stopwatch'"
+  >
   </app-icon-stopwatch>
   <app-icon-settings
     [iconSize]="cs.clockSize / cs.iconScale"

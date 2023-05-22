@@ -1,24 +1,24 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
-  selector: 'app-icon-stopwatch',
-  templateUrl: './icon-stopwatch.component.html',
-  styleUrls: ['./icon-stopwatch.component.scss']
+  selector: 'app-icon-clock',
+  templateUrl: './icon-clock.component.html',
+  styleUrls: ['./icon-clock.component.scss']
 })
-export class IconStopwatchComponent {
-
+export class IconClockComponent {
+  // For setting the icon size by the parent component
   @Input() iconSize = 80;
 
   // For setting the stroke colour by the parent component
   @Input() strokeColour = "green";
 
   style = {
-    "height": "80px",
-    "width": "90px",
+    "height": this.iconSize.toFixed() + "px",
     "stroke": this.strokeColour,
-    "strokeWidth": "3",
-    "fill": "red",
+    "strokeWidth": "14",
+    "fill": "grey",
     "padding": "10px"
+
   }
 
   constructor() {
@@ -37,7 +37,6 @@ export class IconStopwatchComponent {
   }
 
   private size(newSize: number) {
-    this.style["height"] = (newSize * 0.9).toFixed() + "px";
-    this.style["width"] = (newSize * 1).toFixed() + "px";
+    this.style["height"] = newSize.toFixed() + "px";
   }
 }
