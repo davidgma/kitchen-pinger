@@ -8,6 +8,10 @@ import { StylingService } from '../styling.service';
 })
 export class FooterNavComponent {
 
+  strokeColour = "white";
+  fillColour = "blue";
+  iconSize = 80;
+
   constructor(public cs: StylingService) {
     cs.addEventListener('resize', () => this.size());
   }
@@ -25,6 +29,7 @@ export class FooterNavComponent {
     this.style["flex-direction"] = this.cs.navDirection;
     this.style["width"] = this.cs.lineWidth;
     this.style["height"] = this.cs.lineHeight;
+    this.iconSize = this.getIconSize();
   }
 
   openMainVersion(event: MouseEvent) {
@@ -37,6 +42,12 @@ export class FooterNavComponent {
     if (window != null) {
       window.open('https://stackblitz.com/edit/kitchen-pinger', '_blank');
     }
+  }
+
+  getIconSize(): number {
+    // console.log("getIconSize called");
+
+    return Math.max(this.cs.iconMinimumSize, this.cs.clockSize / this.cs.iconScale);
   }
 }
 

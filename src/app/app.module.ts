@@ -20,6 +20,7 @@ import { PageClockComponent } from './page-clock/page-clock.component';
 import { PageStopwatchComponent } from './page-stopwatch/page-stopwatch.component';
 import { PageWrapperComponent } from './page-wrapper/page-wrapper.component';
 import { IconClockComponent } from './icon-clock/icon-clock.component';
+import { IconComponent } from './icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { IconClockComponent } from './icon-clock/icon-clock.component';
     PageClockComponent,
     PageStopwatchComponent,
     PageWrapperComponent,
-    IconClockComponent
+    IconClockComponent,
+    IconComponent
   ],
   imports: [
     BrowserModule,

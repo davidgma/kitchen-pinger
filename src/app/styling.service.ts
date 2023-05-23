@@ -7,6 +7,7 @@ export class StylingService extends EventTarget {
 
   clockSize: number = 500;
   iconScale = 8;
+  iconMinimumSize = 70;
   // mode: ColourMode;
   containerDirection: string;
   navDirection: string;
@@ -82,7 +83,7 @@ export class StylingService extends EventTarget {
       this.navDirection = "row";
       this.lineWidth = "100vw";
       this.lineHeight = "auto";
-      this.dispatchEvent(new Event('resize'));
+      // this.dispatchEvent(new Event('resize'));
     }
     // 2. There's enough space above and below
     else if (vh >= vw * 1.3) {
@@ -95,7 +96,7 @@ export class StylingService extends EventTarget {
       this.navDirection = "row";
       this.lineWidth = "100vw";
       this.lineHeight = "auto";
-      this.dispatchEvent(new Event('resize'));
+      // this.dispatchEvent(new Event('resize'));
     }
     // 3. There's enough space to the left and right
     if (vw > vh * 1.3) {
@@ -108,8 +109,10 @@ export class StylingService extends EventTarget {
       this.navDirection = "column";
       this.lineWidth = "auto";
       this.lineHeight = "100vh";
-      this.dispatchEvent(new Event('resize'));
+      // this.dispatchEvent(new Event('resize'));
     }
+
+    this.dispatchEvent(new Event('resize'));
   }
 
 

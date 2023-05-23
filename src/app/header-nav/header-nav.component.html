@@ -1,26 +1,30 @@
-<nav [ngStyle]="style">
+<nav [ngStyle]="navStyle">
   <app-icon-clock
-    [iconSize]="cs.clockSize / cs.iconScale"
+    [iconSize]="iconSize"
     [strokeColour]="cs.mode.color"
+    [fillColour]="fillColour"
     title="Clock"
     [routerLink]="'clock'"
   >
   </app-icon-clock>
   <app-icon-stopwatch
-    [iconSize]="cs.clockSize / cs.iconScale"
+    [iconSize]="iconSize"
     [strokeColour]="cs.mode.color"
+    [fillColour]="fillColour"
     title="Stopwatch"
     [routerLink]="'stopwatch'"
   >
   </app-icon-stopwatch>
   <app-icon-settings
-    [iconSize]="cs.clockSize / cs.iconScale"
+    [iconSize]="iconSize"
     [strokeColour]="cs.mode.color"
+    [fillColour]="fillColour"
     title="Settings"
   ></app-icon-settings>
   <app-icon-day
-    [iconSize]="cs.clockSize / cs.iconScale"
+    [iconSize]="iconSize"
     [strokeColour]="cs.mode.color"
+    [fillColour]="fillColour"
     (click)="toggleColours()"
     title="Toggle colour mode"
   ></app-icon-day>

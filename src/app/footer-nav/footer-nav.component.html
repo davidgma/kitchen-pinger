@@ -1,13 +1,15 @@
 <nav [ngStyle]="style">
   <app-icon-home
-    [iconSize]="cs.clockSize / cs.iconScale"
+    [iconSize]="iconSize"
     [strokeColour]="cs.mode.color"
+    [fillColour]="fillColour"
     (click)="openMainVersion($event)"
     title="Open main version"
   ></app-icon-home>
   <app-icon-edit
-    [iconSize]="cs.clockSize / cs.iconScale"
+    [iconSize]="iconSize"
     [strokeColour]="cs.mode.color"
+    [fillColour]="fillColour"
     (click)="editOnStackblitz($event)"
     title="Edit on Stackblitz"
   ></app-icon-edit>
