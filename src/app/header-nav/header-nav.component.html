@@ -15,6 +15,14 @@
     [routerLink]="'stopwatch'"
   >
   </app-icon-stopwatch>
+  <app-icon-timer
+    [iconSize]="iconSize"
+    [strokeColour]="cs.mode.color"
+    [fillColour]="fillColour"
+    title="Timer"
+    [routerLink]="'timer'"
+  >
+  </app-icon-timer>
   <app-icon-settings
     [iconSize]="iconSize"
     [strokeColour]="cs.mode.color"
@@ -22,5 +30,4 @@
     title="Settings"
     [routerLink]="'settings'"
   ></app-icon-settings>
-  
 </nav>

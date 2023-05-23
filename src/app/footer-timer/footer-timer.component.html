@@ -1,0 +1,32 @@
+<footer [ngStyle]="footerStyle">
+  <div [ngStyle]="lineStyle"></div>
+  <nav [ngStyle]="navStyle">
+    <app-icon-shortcut
+      [iconSize]="iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="fillColour"
+      (click)="cancelTimer($event)"
+      title="Shortcuts"
+    ></app-icon-shortcut>
+    <app-icon-cancel
+      [iconSize]="iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="fillColour"
+      (click)="cancelTimer($event)"
+      title="Cancel timer"
+    ></app-icon-cancel>
+    <app-icon-digital
+      [iconSize]="iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="fillColour"
+      title="Digital clock"
+    ></app-icon-digital>
+    <app-icon-settings
+      [iconSize]="iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="fillColour"
+      title="Settings"
+      [routerLink]="'../settings'"
+    ></app-icon-settings>
+  </nav>
+</footer>

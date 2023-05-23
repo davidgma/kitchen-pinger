@@ -22,6 +22,12 @@ import { PageWrapperComponent } from './page-wrapper/page-wrapper.component';
 import { IconClockComponent } from './icon-clock/icon-clock.component';
 import { IconComponent } from './icon/icon.component';
 import { PageSettingsComponent } from './page-settings/page-settings.component';
+import { IconTimerComponent } from './icon-timer/icon-timer.component';
+import { PageTimerComponent } from './page-timer/page-timer.component';
+import { FooterTimerComponent } from './footer-timer/footer-timer.component';
+import { IconCancelComponent } from './icon-cancel/icon-cancel.component';
+import { IconShortcutComponent } from './icon-shortcut/icon-shortcut.component';
+import { IconDigitalComponent } from './icon-digital/icon-digital.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +47,13 @@ import { PageSettingsComponent } from './page-settings/page-settings.component';
     PageWrapperComponent,
     IconClockComponent,
     IconComponent,
-    PageSettingsComponent
+    PageSettingsComponent,
+    IconTimerComponent,
+    PageTimerComponent,
+    FooterTimerComponent,
+    IconCancelComponent,
+    IconShortcutComponent,
+    IconDigitalComponent
   ],
   imports: [
     BrowserModule,
