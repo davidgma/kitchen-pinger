@@ -1,0 +1,14 @@
+<section class="setting">
+  <p>
+    Toggle dark and light mode
+  </p>
+  <span>
+    <app-icon-day
+      [iconSize]="iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="fillColour"
+      (click)="toggleColours()"
+      title="Toggle colour mode"
+    ></app-icon-day>
+  </span>
+</section>
