@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StylingService } from '../styling.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { StylingService } from '../styling.service';
   templateUrl: './footer-timer.component.html',
   styleUrls: ['./footer-timer.component.scss']
 })
-export class FooterTimerComponent {
+export class FooterTimerComponent implements OnInit {
 
   strokeColour = "white";
   fillColour = "blue";
@@ -14,6 +14,10 @@ export class FooterTimerComponent {
 
   constructor(public cs: StylingService) {
     cs.addEventListener('resize', () => this.size());
+  }
+
+  ngOnInit(): void {
+    this.size();
   }
 
   footerStyle = {

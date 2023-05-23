@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { StylingService } from '../styling.service';
 
 @Component({
@@ -6,10 +6,13 @@ import { StylingService } from '../styling.service';
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
 
   constructor(public cs: StylingService) {
     cs.addEventListener('resize', () => this.size());
+  }
+  ngOnInit(): void {
+    this.size();
   }
 
   style = {
