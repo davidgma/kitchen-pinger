@@ -8,11 +8,11 @@ export class StylingService extends EventTarget {
   clockSize: number = 500;
   iconScale = 8;
   iconMinimumSize = 70;
-  // mode: ColourMode;
   containerDirection: string;
   navDirection: string;
   lineWidth: string;
   lineHeight: string;
+  private currentFormat: number = 0;
 
   #mode: ColourMode;
   get mode() { return this.#mode; }
@@ -24,7 +24,7 @@ export class StylingService extends EventTarget {
 
   constructor() {
     super();
-    console.log("In StylingService");
+    // console.log("In StylingService");
     this.#mode = this.darkMode;
     this.containerDirection = "column";
     this.navDirection = "row";
@@ -63,7 +63,7 @@ export class StylingService extends EventTarget {
 
   // place items based on viewport dimensions
   placeItems() {
-    console.log("In placeItems");
+    // console.log("In placeItems");
 
     let vh = window.innerHeight;
     let vw = window.innerWidth;
@@ -73,7 +73,10 @@ export class StylingService extends EventTarget {
 
     // 1. There's not enough space above or below
     if (vh < vw * 1.3 && vw < vh * 1.3) {
-      console.log('not enough space above or below');
+      if (this.currentFormat !== 1) {
+        console.log('not enough space above or below');
+        this.currentFormat = 1;
+      }
       // Make the clock face smaller with some margin at the top and put the icons at the bottom.
       // sizes in pixels but based on viewport sizes
       if (this.clockSize !== 72 * vh / 100) {
@@ -87,7 +90,10 @@ export class StylingService extends EventTarget {
     }
     // 2. There's enough space above and below
     else if (vh >= vw * 1.3) {
-      console.log(' enough space above and below');
+      if (this.currentFormat !== 2) {
+        this.currentFormat = 2;
+        console.log(' enough space above and below');
+      }
       // sizes in pixels but based on viewport sizes
       if (this.clockSize !== 91 * vw / 100) {
         this.clockSize = 91 * vw / 100; // pixels
@@ -100,7 +106,10 @@ export class StylingService extends EventTarget {
     }
     // 3. There's enough space to the left and right
     if (vw > vh * 1.3) {
-      console.log('enough space left and right');
+      if (this.currentFormat !== 3) {
+        this.currentFormat = 3;
+        console.log('enough space left and right');
+      }
       // sizes in pixels but based on viewport sizes
       if (this.clockSize !== 91 * vh / 100) {
         this.clockSize = 91 * vh / 100; // pixels

@@ -35,7 +35,7 @@ export class ClockfaceComponent {
 
   constructor() {
 
-    console.log("In ClockfaceComponent");
+    // console.log("In ClockfaceComponent");
 
     // Fill hours array
     for (let i = 1; i <= 12; i++) {

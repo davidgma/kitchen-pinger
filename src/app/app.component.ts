@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     });
     ts.setToCurrentTime();
     onload = () => {
-      console.log('Page loaded.');
+      // console.log('Page loaded.');
       this.cs.placeItems();
     };
   }
@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log("In ngOnInit");
+    // console.log("In ngOnInit");
 
     // Useful for future reference:
     // onfocus = () => { console.log('App focused.'); };

@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IntervalService } from './interval.service';
+import { TitleService } from './title.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -8,36 +10,45 @@ export class TimeService {
 
   time: Date = new Date();
 
-  constructor(private intervalService: IntervalService) { }
+  constructor(private intervalService: IntervalService,
+    private titleService: TitleService) { }
 
   // Starts updating the time periodically based on the
   // current time of day.
   setToCurrentTime() {
 
+    let intervalName = "clock-update";
+
+    // Unsubscribe to any existing intervals
+    this.intervalService.stop(intervalName);
+
     // Set up an interval to subscribe to.
     // This uses quite a bit of cpu but is smooth:
-    // this.intervalService.start("clock-update", 40, false);
+    // let interval = this.intervalService.start(intervalName, 40, false);
     // This uses much less cpu and ticks:
-    this.intervalService.start("clock-update", 1000, true);
+    let interval = this.intervalService.start(intervalName, 1000, true);
 
-    this.intervalService.addEventListener('clock-update', () => {
+    interval.eventEmitter.subscribe(() => {
 
-      // set the time to be used externally
-      this.time = new Date();
+      let newTime = new Date();
 
       // Set the title text
-      let timeString = this.time.getHours().toFixed().padStart(2, '0') + ":" + this.time.getMinutes().toFixed().padStart(2, '0')
-        + ":" + this.time.getSeconds().toFixed().padStart(2, '0')
-        ;
-      if (document.title !== timeString) {
-        document.title = timeString;
-      }
+      let timeString = newTime.getHours().toFixed().padStart(2, '0') + ":" + newTime.getMinutes().toFixed().padStart(2, '0')
+      + ":" + newTime.getSeconds().toFixed().padStart(2, '0')
+      ;
+      this.titleService.setTitle("/clock", timeString);
+      // document.title = timeString;
 
+      // set the time to be used externally
+      this.time = newTime;
+      
     });
 
-    // How to stop the interval
-    // setTimeout(() => {
-    //   this.intervalService.stop("clock-update");
-    // }, 10000);
+
   }
+
+  setToTimer() {
+
+  }
+
 }

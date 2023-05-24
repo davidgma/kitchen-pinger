@@ -1,24 +1,27 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IntervalService extends EventTarget {
+export class IntervalService {
 
   // private intervals = new IntervalArray();
   private intervals = new Map<string, Interval>();
 
   constructor() {
-    super();
+
   }
 
   start(intervalName: string, intervalMilliseconds: number,
-    wholeSeconds = false): void {
+    wholeSeconds = false): Interval {
+
+    let eventEmitter = new EventEmitter<void>();
 
     let interval =
-      new Interval(intervalName, intervalMilliseconds, true, wholeSeconds, this);
+      new Interval(intervalName, intervalMilliseconds, true, wholeSeconds, eventEmitter);
     this.intervals.set(intervalName, interval);
     interval.run();
+    return interval;
 
     // console.log(this.intervals.has(intervalName));
   }
@@ -31,7 +34,10 @@ export class IntervalService extends EventTarget {
       }
     }
   }
+
+
 }
+
 
 class Interval {
 
@@ -40,7 +46,7 @@ class Interval {
     public intervalMilliseconds: number,
     public isLive: boolean,
     public wholeSeconds: boolean,
-    private parent: IntervalService) {
+    public eventEmitter: EventEmitter<void>) {
 
   }
 
@@ -54,7 +60,8 @@ class Interval {
         );
       }
       setTimeout(() => {
-        this.parent.dispatchEvent(new CustomEvent(this.name, {}));
+        // this.parent.dispatchEvent(new CustomEvent(this.name, {}));
+        this.eventEmitter.emit();
         this.run();
       }, milliseconds);
     }
