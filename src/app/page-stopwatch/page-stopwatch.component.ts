@@ -34,16 +34,7 @@ export class PageStopwatchComponent implements OnInit {
     this.screenStyle["flex-direction"] = this.cs.containerDirection;
   }
 
-  toggleStopwatch(event: MouseEvent) {
-    // console.log("isStopwatchRunning: " + this.ts.isStopwatchRunning);
-
-    if (this.ts.isStopwatchRunning) {
-      this.ts.pauseStopwatch();
-    }
-    else {
-      this.ts.startStopwatch();
-    }
-  }
+  
 
 
 }

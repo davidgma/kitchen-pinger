@@ -2,6 +2,7 @@
   <div [ngStyle]="lineStyle"></div>
   <nav [ngStyle]="navStyle">
     <app-icon-start
+      *ngIf="!ts.isStopwatchRunning"
       [iconSize]="iconSize"
       [strokeColour]="cs.mode.color"
       [fillColour]="fillColour"
@@ -9,18 +10,13 @@
       title="Start stopwatch"
     ></app-icon-start>
     <app-icon-pause
+      *ngIf="ts.isStopwatchRunning"
       [iconSize]="iconSize"
       [strokeColour]="cs.mode.color"
       [fillColour]="fillColour"
       title="Pause stopwatch"
       (click)="pauseStopwatch($event)"
     ></app-icon-pause>
-    <app-icon-digital
-      [iconSize]="iconSize"
-      [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
-      title="Digital clock"
-    ></app-icon-digital>
     <app-icon-reset
       [iconSize]="iconSize"
       [strokeColour]="cs.mode.color"
@@ -28,6 +24,12 @@
       (click)="resetStopwatch($event)"
       title="Reset stopwatch"
     ></app-icon-reset>
+    <app-icon-digital
+      [iconSize]="iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="fillColour"
+      title="Digital clock"
+    ></app-icon-digital>
     <app-icon-settings
       [iconSize]="iconSize"
       [strokeColour]="cs.mode.color"

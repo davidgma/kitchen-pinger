@@ -92,10 +92,23 @@ export class TimeService {
   }
 
   resetStopwatch() {
+    if (this.isStopwatchRunning) {
+      this.pauseStopwatch();
+    }
     this.stopwatchTime = new Date(2000, 0, 0, 0, 0, 0);
+    this.stopwatchStartTime = new Date();
+    this.timeSoFar = 0;
     this.titleService.setTitle("/stopwatch",
       this.toUTCTitleString(this.stopwatchTime));
-    this.timeSoFar = 0;
+  }
+
+  toggleStopwatch(event: MouseEvent) {
+    if (this.isStopwatchRunning) {
+      this.pauseStopwatch();
+    }
+    else {
+      this.startStopwatch();
+    }
   }
 
   private toTitleString(date: Date) {

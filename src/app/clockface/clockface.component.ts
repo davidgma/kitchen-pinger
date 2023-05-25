@@ -124,7 +124,8 @@ export class ClockfaceComponent {
       // update the hands of the clock
       if (this.UTC) {
         this.degreesHours = (now.getUTCHours() * 60 + now.getUTCMinutes()) / (12 * 60) * 360;
-        this.degreesSeconds = (now.getUTCSeconds() * 1000 + now.getUTCMilliseconds()) / 60000 * 360;
+        // this.degreesSeconds = (now.getUTCSeconds() * 1000 + now.getUTCMilliseconds()) / 60000 * 360;
+        this.degreesSeconds = (now.getUTCSeconds() / 60 * 360 )
         this.degreesMinutes = now.getUTCMinutes() / 60 * 360;
       }
       else {

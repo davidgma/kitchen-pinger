@@ -12,7 +12,7 @@ export class FooterStopwatchComponent implements OnInit {
   fillColour = "blue";
   iconSize = 80;
 
-  constructor(public cs: StylingService, private ts: TimeService) {
+  constructor(public cs: StylingService, public ts: TimeService) {
     cs.addEventListener('resize', () => this.size());
   }
 
