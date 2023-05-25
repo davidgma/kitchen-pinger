@@ -36,10 +36,11 @@ export class IntervalService {
   }
 
 
+
+
 }
 
-
-class Interval {
+export class Interval {
 
   constructor(
     public name: string,

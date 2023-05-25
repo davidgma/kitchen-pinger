@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-import { IntervalService } from './interval.service';
+import { IntervalService, Interval } from './interval.service';
 import { TitleService } from './title.service';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimeService {
 
-  time: Date = new Date();
+  clockTime: Date = new Date();
+  stopwatchTime: Date = new Date(2000, 0, 0, 0, 0, 0);
+  isStopwatchRunning = false;
+  private stopwatchInterval?: Interval;
+
 
   constructor(private intervalService: IntervalService,
     private titleService: TitleService) { }
@@ -30,25 +33,67 @@ export class TimeService {
 
     interval.eventEmitter.subscribe(() => {
 
-      let newTime = new Date();
+      // set the time to be used externally
+      this.clockTime = new Date();
 
       // Set the title text
-      let timeString = newTime.getHours().toFixed().padStart(2, '0') + ":" + newTime.getMinutes().toFixed().padStart(2, '0')
-      + ":" + newTime.getSeconds().toFixed().padStart(2, '0')
-      ;
-      this.titleService.setTitle("/clock", timeString);
-      // document.title = timeString;
+      this.titleService.setTitle("/clock",
+        this.toTitleString(this.clockTime));
 
-      // set the time to be used externally
-      this.time = newTime;
-      
     });
 
 
   }
 
-  setToTimer() {
+  initialiseStopwatch() {
+    this.stopwatchTime = new Date(2000, 0, 0, 0, 0, 0);
+    this.titleService.setTitle("/stopwatch",
+      this.toTitleString(this.stopwatchTime));
+  }
 
+  startStopwatch() {
+    let intervalName = "stopwatch";
+
+    // Unsubscribe to any existing intervals
+    this.intervalService.stop(intervalName);
+
+    // Set up an interval to subscribe to.
+    this.stopwatchInterval = this.intervalService.start(intervalName, 1000, false);
+
+    this.stopwatchInterval.eventEmitter.subscribe(() => {
+      // console.log("interval emmitted");
+      this.stopwatchTime = new Date(this.stopwatchTime.valueOf() + 1000);
+      // console.log(this.time);
+
+      this.titleService.setTitle("/stopwatch",
+        this.toTitleString(this.stopwatchTime));
+
+    });
+
+    this.isStopwatchRunning = true;
+  }
+
+  pauseStopwatch() {
+    if (this.stopwatchInterval !== null) {
+
+      this.intervalService.stop("stopwatch");
+      this.stopwatchInterval?.eventEmitter.unsubscribe();
+    }
+    console.log("here1");
+    this.isStopwatchRunning = false;
+    console.log("here2");
+  }
+
+  resetStopwatch() {
+    this.stopwatchTime = new Date(2000, 0, 0, 0, 0, 0);
+    this.titleService.setTitle("/stopwatch",
+      this.toTitleString(this.stopwatchTime));
+  }
+
+  private toTitleString(date: Date) {
+    return date.getHours().toFixed().padStart(2, '0') + ":" + date.getMinutes().toFixed().padStart(2, '0')
+      + ":" + date.getSeconds().toFixed().padStart(2, '0')
+      ;
   }
 
 }

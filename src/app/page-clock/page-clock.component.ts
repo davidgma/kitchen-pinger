@@ -26,4 +26,5 @@ export class PageClockComponent {
   private size() {
     this.screenStyle["flex-direction"] = this.cs.containerDirection;
   }
+  
 }

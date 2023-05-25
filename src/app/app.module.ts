@@ -29,6 +29,10 @@ import { IconCancelComponent } from './icon-cancel/icon-cancel.component';
 import { IconShortcutComponent } from './icon-shortcut/icon-shortcut.component';
 import { IconDigitalComponent } from './icon-digital/icon-digital.component';
 import { PageSettingsTimerComponent } from './page-settings-timer/page-settings-timer.component';
+import { IconResetComponent } from './icon-reset/icon-reset.component';
+import { FooterStopwatchComponent } from './footer-stopwatch/footer-stopwatch.component';
+import { IconStartComponent } from './icon-start/icon-start.component';
+import { IconPauseComponent } from './icon-pause/icon-pause.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +59,11 @@ import { PageSettingsTimerComponent } from './page-settings-timer/page-settings-
     IconCancelComponent,
     IconShortcutComponent,
     IconDigitalComponent,
-    PageSettingsTimerComponent
+    PageSettingsTimerComponent,
+    IconResetComponent,
+    FooterStopwatchComponent,
+    IconStartComponent,
+    IconPauseComponent
   ],
   imports: [
     BrowserModule,

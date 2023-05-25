@@ -1,0 +1,39 @@
+<footer [ngStyle]="footerStyle">
+  <div [ngStyle]="lineStyle"></div>
+  <nav [ngStyle]="navStyle">
+    <app-icon-start
+      [iconSize]="iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="fillColour"
+      (click)="startStopwatch($event)"
+      title="Start stopwatch"
+    ></app-icon-start>
+    <app-icon-pause
+      [iconSize]="iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="fillColour"
+      title="Pause stopwatch"
+      (click)="pauseStopwatch($event)"
+    ></app-icon-pause>
+    <app-icon-digital
+      [iconSize]="iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="fillColour"
+      title="Digital clock"
+    ></app-icon-digital>
+    <app-icon-reset
+      [iconSize]="iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="fillColour"
+      (click)="resetStopwatch($event)"
+      title="Reset stopwatch"
+    ></app-icon-reset>
+    <app-icon-settings
+      [iconSize]="iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="fillColour"
+      title="Settings"
+      [routerLink]="'settings'"
+    ></app-icon-settings>
+  </nav>
+</footer>
