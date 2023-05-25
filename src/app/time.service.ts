@@ -9,9 +9,13 @@ export class TimeService {
 
   clockTime: Date = new Date();
   stopwatchTime: Date = new Date(2000, 0, 0, 0, 0, 0);
+  stopwatchStartTime = new Date();
+  // Used for the toggling of start/pause
   isStopwatchRunning = false;
   private stopwatchInterval?: Interval;
 
+  // For pausing and restarting
+  private timeSoFar: number = 0;
 
   constructor(private intervalService: IntervalService,
     private titleService: TitleService) { }
@@ -46,12 +50,16 @@ export class TimeService {
   }
 
   initialiseStopwatch() {
-    // this.stopwatchTime = new Date(2000, 0, 0, 0, 0, 0);
     this.titleService.setTitle("/stopwatch",
-      this.toTitleString(this.stopwatchTime));
+      this.toUTCTitleString(this.stopwatchTime));
   }
 
   startStopwatch() {
+
+    this.stopwatchStartTime = new Date(
+      (new Date()).valueOf() - this.timeSoFar
+    );
+
     let intervalName = "stopwatch";
 
     // Unsubscribe to any existing intervals
@@ -61,12 +69,13 @@ export class TimeService {
     this.stopwatchInterval = this.intervalService.start(intervalName, 1000, false);
 
     this.stopwatchInterval.eventEmitter.subscribe(() => {
-      // console.log("interval emmitted");
-      this.stopwatchTime = new Date(this.stopwatchTime.valueOf() + 1000);
-      // console.log(this.time);
+      let now = new Date();
+      let difference = now.valueOf() - this.stopwatchStartTime.valueOf();
+
+      this.stopwatchTime = new Date(difference);
 
       this.titleService.setTitle("/stopwatch",
-        this.toTitleString(this.stopwatchTime));
+        this.toUTCTitleString(this.stopwatchTime));
 
     });
 
@@ -79,18 +88,25 @@ export class TimeService {
       this.stopwatchInterval?.eventEmitter.unsubscribe();
     }
     this.isStopwatchRunning = false;
-
+    this.timeSoFar = (new Date()).valueOf() - this.stopwatchStartTime.valueOf();
   }
 
   resetStopwatch() {
     this.stopwatchTime = new Date(2000, 0, 0, 0, 0, 0);
     this.titleService.setTitle("/stopwatch",
-      this.toTitleString(this.stopwatchTime));
+      this.toUTCTitleString(this.stopwatchTime));
+    this.timeSoFar = 0;
   }
 
   private toTitleString(date: Date) {
     return date.getHours().toFixed().padStart(2, '0') + ":" + date.getMinutes().toFixed().padStart(2, '0')
       + ":" + date.getSeconds().toFixed().padStart(2, '0')
+      ;
+  }
+
+  private toUTCTitleString(date: Date) {
+    return date.getUTCHours().toFixed().padStart(2, '0') + ":" + date.getUTCMinutes().toFixed().padStart(2, '0')
+      + ":" + date.getUTCSeconds().toFixed().padStart(2, '0')
       ;
   }
 

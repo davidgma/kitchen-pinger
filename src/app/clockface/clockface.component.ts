@@ -22,6 +22,7 @@ export class ClockfaceComponent {
 
   // For getting the clock time from the parent component
   @Input() clockTime = new Date();
+  @Input() UTC = false;
 
   // For getting the background colour (which actually sets the colours of the hands, diallines and pin) from the parent component
   @Input() colourStyles = {
@@ -121,9 +122,16 @@ export class ClockfaceComponent {
     // console.log("in setHands.");
     if (document.visibilityState === 'visible') {
       // update the hands of the clock
-      this.degreesHours = (now.getHours() * 60 + now.getMinutes()) / (12 * 60) * 360;
-      this.degreesSeconds = (now.getSeconds() * 1000 + now.getMilliseconds()) / 60000 * 360;
-      this.degreesMinutes = now.getMinutes() / 60 * 360;
+      if (this.UTC) {
+        this.degreesHours = (now.getUTCHours() * 60 + now.getUTCMinutes()) / (12 * 60) * 360;
+        this.degreesSeconds = (now.getUTCSeconds() * 1000 + now.getUTCMilliseconds()) / 60000 * 360;
+        this.degreesMinutes = now.getUTCMinutes() / 60 * 360;
+      }
+      else {
+        this.degreesHours = (now.getHours() * 60 + now.getMinutes()) / (12 * 60) * 360;
+        this.degreesSeconds = (now.getSeconds() * 1000 + now.getMilliseconds()) / 60000 * 360;
+        this.degreesMinutes = now.getMinutes() / 60 * 360;
+      }
     }
   }
 
