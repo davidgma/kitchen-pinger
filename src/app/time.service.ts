@@ -46,7 +46,7 @@ export class TimeService {
   }
 
   initialiseStopwatch() {
-    this.stopwatchTime = new Date(2000, 0, 0, 0, 0, 0);
+    // this.stopwatchTime = new Date(2000, 0, 0, 0, 0, 0);
     this.titleService.setTitle("/stopwatch",
       this.toTitleString(this.stopwatchTime));
   }
@@ -75,13 +75,11 @@ export class TimeService {
 
   pauseStopwatch() {
     if (this.stopwatchInterval !== null) {
-
       this.intervalService.stop("stopwatch");
       this.stopwatchInterval?.eventEmitter.unsubscribe();
     }
-    console.log("here1");
     this.isStopwatchRunning = false;
-    console.log("here2");
+
   }
 
   resetStopwatch() {

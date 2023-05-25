@@ -61,8 +61,10 @@ export class Interval {
         );
       }
       setTimeout(() => {
-        // this.parent.dispatchEvent(new CustomEvent(this.name, {}));
-        this.eventEmitter.emit();
+        // console.log("observed: " + this.eventEmitter.observed);
+        if (this.eventEmitter.observed) {
+          this.eventEmitter.emit();
+        }
         this.run();
       }, milliseconds);
     }
