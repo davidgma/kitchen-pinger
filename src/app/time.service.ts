@@ -92,7 +92,8 @@ export class TimeService {
   }
 
   resetStopwatch() {
-    if (this.isStopwatchRunning) {
+    let isRunning = this.isStopwatchRunning;
+    if (isRunning) {
       this.pauseStopwatch();
     }
     this.stopwatchTime = new Date(2000, 0, 0, 0, 0, 0);
@@ -100,6 +101,10 @@ export class TimeService {
     this.timeSoFar = 0;
     this.titleService.setTitle("/stopwatch",
       this.toUTCTitleString(this.stopwatchTime));
+
+    if (isRunning) {
+      this.startStopwatch();
+    }
   }
 
   toggleStopwatch(event: MouseEvent) {
