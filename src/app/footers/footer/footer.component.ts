@@ -1,0 +1,81 @@
+import { Component, OnInit } from '@angular/core';
+import { StylingService } from '../../services/styling.service';
+import { TimeService } from '../../services/time.service';
+
+@Component({
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss']
+})
+export class FooterComponent implements OnInit {
+
+  strokeColour = "white";
+  fillColour = "blue";
+  iconSize = 80;
+
+  constructor(public cs: StylingService, public ts: TimeService) {
+    cs.addEventListener('resize', () => this.size());
+    this.strokeColour = cs.mode.color;
+    this.fillColour = cs.mode.color;
+  }
+
+  ngOnInit(): void {
+    this.size();
+  }
+
+  footerStyle = {
+    "display": "flex",
+    "flex-direction": this.cs.containerDirection,
+    "width": this.cs.lineWidth,
+    "height": this.cs.lineHeight,
+    "padding": "0px"
+  }
+
+  lineStyle = {
+    "width": this.cs.lineWidth,
+    "height": "auto",
+    "border-top": "1px solid",
+    "border-left": "none"
+  }
+
+  navStyle = {
+    "display": "flex",
+    "flex-direction": this.cs.navDirection,
+    "width": this.cs.lineWidth,
+    "height": this.cs.lineHeight,
+    "justify-content": "space-around",
+    "align-items": "center"
+  }
+
+  private size() {
+    this.footerStyle["flex-direction"] = this.cs.containerDirection;
+    this.footerStyle["width"] = this.cs.lineWidth;
+    this.footerStyle["height"] = this.cs.lineHeight;
+
+    // console.log("containerDirection: " + this.cs.containerDirection);
+
+    if (this.cs.containerDirection === "column") {
+      this.lineStyle.width = this.cs.lineWidth;
+      this.lineStyle.height = "auto";
+      this.lineStyle['border-top'] = "1px solid";
+      this.lineStyle['border-left'] = "none";
+    }
+    else if (this.cs.containerDirection === "row") {
+      this.lineStyle.width = "auto";
+      this.lineStyle.height = this.cs.lineHeight;
+      this.lineStyle['border-top'] = "none";
+      this.lineStyle['border-left'] = "1px solid";
+    }
+
+    this.navStyle["flex-direction"] = this.cs.navDirection;
+    this.navStyle["width"] = this.cs.lineWidth;
+    this.navStyle["height"] = this.cs.lineHeight;
+    this.iconSize = this.getIconSize();
+  }
+
+  getIconSize(): number {
+    // console.log("getIconSize called");
+
+    return Math.max(this.cs.iconMinimumSize, this.cs.clockSize / this.cs.iconScale);
+  }
+}

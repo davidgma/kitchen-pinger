@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PageClockComponent } from './page-clock/page-clock.component';
-import { PageStopwatchComponent } from './page-stopwatch/page-stopwatch.component';
-import { PageSettingsComponent } from './page-settings/page-settings.component';
-import { PageTimerComponent } from './page-timer/page-timer.component';
-import { PageSettingsTimerComponent } from './page-settings-timer/page-settings-timer.component';
+import { PageClockComponent } from './pages/page-clock/page-clock.component';
+import { PageStopwatchComponent } from './pages/page-stopwatch/page-stopwatch.component';
+import { PageSettingsComponent } from './pages/page-settings/page-settings.component';
+import { PageTimerComponent } from './pages/page-timer/page-timer.component';
+import { PageSettingsTimerComponent } from './pages/page-settings-timer/page-settings-timer.component';
 
 const routes: Routes = [
   { path: 'clock', component: PageClockComponent },

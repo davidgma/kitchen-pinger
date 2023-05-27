@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StylingService } from './styling.service';
-import { TimeService } from './time.service';
+import { StylingService } from './services/styling.service';
+import { TimeService } from './services/time.service';
 
 @Component({
   selector: 'app-root',
