@@ -1,7 +1,12 @@
-<header [ngStyle]="headerStyle">
-  <nav [ngStyle]="navStyle">
+<header
+[style.--line-height]="cs.lineHeight"
+[style.--line-width]="cs.lineWidth"
+[style.--container-direction]="cs.containerDirection"
+[style.--nav-direction]="cs.navDirection"
+>
+  <nav>
     <app-icon-clock
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="clockIconColour"
       [fillColour]="clockIconColour"
       title="Clock"
@@ -9,7 +14,7 @@
     >
     </app-icon-clock>
     <app-icon-stopwatch
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="stopwatchIconColour"
       [fillColour]="stopwatchIconColour"
       title="Stopwatch"
@@ -17,7 +22,7 @@
     >
     </app-icon-stopwatch>
     <app-icon-timer
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="timerIconColour"
       [fillColour]="timerIconColour"
       title="Timer"
@@ -25,12 +30,13 @@
     >
     </app-icon-timer>
     <app-icon-settings
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="settingsIconColour"
       [fillColour]="settingsIconColour"
       title="Settings"
       [routerLink]="'settings'"
     ></app-icon-settings>
   </nav>
-  <div [ngStyle]="lineStyle"></div>
+  <div *ngIf="cs.containerDirection === 'column'" class="horizontal-line"></div>
+  <div *ngIf="cs.containerDirection === 'row'" class="vertical-line"></div>
 </header>

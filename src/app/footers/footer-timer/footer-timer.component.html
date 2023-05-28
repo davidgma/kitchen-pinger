@@ -1,30 +1,38 @@
-<footer [ngStyle]="footerStyle">
-  <div [ngStyle]="lineStyle"></div>
-  <nav [ngStyle]="navStyle">
+<footer
+  [style.--line-width]="cs.lineWidth"
+  [style.--line-height]="cs.lineHeight"
+  [style.--container-direction]="cs.containerDirection"
+>
+  <div
+    *ngIf="this.cs.containerDirection === 'column'"
+    class="horizontal-line"
+  ></div>
+  <div *ngIf="this.cs.containerDirection === 'row'" class="vertical-line"></div>
+  <nav [style.--nav-direction]="cs.navDirection">
     <app-icon-shortcut
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
+      [fillColour]="cs.mode.color"
       (click)="cancelTimer($event)"
       title="Shortcuts"
     ></app-icon-shortcut>
     <app-icon-cancel
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
+      [fillColour]="cs.mode.color"
       (click)="cancelTimer($event)"
       title="Cancel timer"
     ></app-icon-cancel>
     <app-icon-digital
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
+      [fillColour]="cs.mode.color"
       title="Digital clock"
     ></app-icon-digital>
     <app-icon-settings
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
+      [fillColour]="cs.mode.color"
       title="Settings"
       [routerLink]="'settings'"
     ></app-icon-settings>

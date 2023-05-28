@@ -1,39 +1,47 @@
-<footer [ngStyle]="footerStyle">
-  <div [ngStyle]="lineStyle"></div>
-  <nav [ngStyle]="navStyle">
+<footer
+  [style.--line-width]="cs.lineWidth"
+  [style.--line-height]="cs.lineHeight"
+  [style.--container-direction]="cs.containerDirection"
+>
+  <div
+    *ngIf="this.cs.containerDirection === 'column'"
+    class="horizontal-line"
+  ></div>
+  <div *ngIf="this.cs.containerDirection === 'row'" class="vertical-line"></div>
+  <nav [style.--nav-direction]="cs.navDirection">
     <app-icon-start
       *ngIf="!ts.isStopwatchRunning"
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
+      [fillColour]="cs.mode.color"
       (click)="startStopwatch($event)"
       title="Start stopwatch"
     ></app-icon-start>
     <app-icon-pause
       *ngIf="ts.isStopwatchRunning"
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
+      [fillColour]="cs.mode.color"
       title="Pause stopwatch"
       (click)="pauseStopwatch($event)"
     ></app-icon-pause>
     <app-icon-reset
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
+      [fillColour]="cs.mode.color"
       (click)="resetStopwatch($event)"
       title="Reset stopwatch"
     ></app-icon-reset>
     <app-icon-digital
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
+      [fillColour]="cs.mode.color"
       title="Digital clock"
     ></app-icon-digital>
     <app-icon-settings
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
+      [fillColour]="cs.mode.color"
       title="Settings"
       [routerLink]="'settings'"
     ></app-icon-settings>

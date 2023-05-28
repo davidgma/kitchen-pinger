@@ -1,10 +1,15 @@
-<footer [ngStyle]="footerStyle">
-  <div [ngStyle]="lineStyle"></div>
-  <nav [ngStyle]="navStyle">
+<footer
+  [style.--line-width]="cs.lineWidth"
+  [style.--line-height]="cs.lineHeight"
+  [style.--container-direction]="cs.containerDirection"
+>
+  <div *ngIf="cs.containerDirection === 'column'" class="horizontal-line"></div>
+  <div *ngIf="cs.containerDirection === 'row'" class="vertical-line"></div>
+  <nav [style.--nav-direction]="cs.navDirection">
     <app-icon-digital
-      [iconSize]="iconSize"
+      [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
+      [fillColour]="cs.mode.color"
       title="Digital clock"
     ></app-icon-digital>
   </nav>

@@ -15,26 +15,8 @@ export class PageStopwatchComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cs.addEventListener('resize', () => this.size());
     this.ts.initialiseStopwatch();
   }
-
-  screenStyle = {
-    "position": "relative",
-    "height": "100%",
-    "display": "flex",
-    "align-items": "center",
-    "justify-content": "space-between",
-    "flex-direction": this.cs.containerDirection,
-  }
-
-
-
-  private size() {
-    this.screenStyle["flex-direction"] = this.cs.containerDirection;
-  }
-
-
 
 
 }

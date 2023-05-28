@@ -13,6 +13,7 @@ export class StylingService extends EventTarget {
   lineWidth: string;
   lineHeight: string;
   private currentFormat: number = 0;
+  iconSize: number;
 
   #mode: ColourMode;
   get mode() { return this.#mode; }
@@ -34,11 +35,16 @@ export class StylingService extends EventTarget {
       // console.log("in resize styling service");
       this.placeItems();
     });
+    document.addEventListener('visibilitychange', () => {
+      // console.log("visibilitychanged: ");
+      if (document.visibilityState === "visible") {
+        this.placeItems();
+      }
+    });
     document.addEventListener('DOMContentLoaded', () => {
-    // document.addEventListener('readystatechange', (event) => {
-      // console.log("readystate: " + JSON.stringify(event));
       this.placeItems();
     });
+    this.iconSize = Math.max(this.iconMinimumSize, this.clockSize / this.iconScale);
   }
 
   public darkMode: ColourMode = {
@@ -68,8 +74,6 @@ export class StylingService extends EventTarget {
     let vh = window.innerHeight;
     let vw = window.innerWidth;
 
-    // console.log("vw: " + vw);
-
 
     // 1. There's not enough space above or below
     if (vh < vw * 1.3 && vw < vh * 1.3) {
@@ -86,7 +90,6 @@ export class StylingService extends EventTarget {
       this.navDirection = "row";
       this.lineWidth = "100vw";
       this.lineHeight = "auto";
-      // this.dispatchEvent(new Event('resize'));
     }
     // 2. There's enough space above and below
     else if (vh >= vw * 1.3) {
@@ -102,7 +105,6 @@ export class StylingService extends EventTarget {
       this.navDirection = "row";
       this.lineWidth = "100vw";
       this.lineHeight = "auto";
-      // this.dispatchEvent(new Event('resize'));
     }
     // 3. There's enough space to the left and right
     if (vw > vh * 1.3) {
@@ -118,10 +120,9 @@ export class StylingService extends EventTarget {
       this.navDirection = "column";
       this.lineWidth = "auto";
       this.lineHeight = "100vh";
-      // this.dispatchEvent(new Event('resize'));
     }
 
-    this.dispatchEvent(new Event('resize'));
+    this.iconSize = Math.max(this.iconMinimumSize, this.clockSize / this.iconScale);
   }
 
 

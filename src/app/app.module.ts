@@ -13,10 +13,8 @@ import { IconStopwatchComponent } from './icons/icon-stopwatch/icon-stopwatch.co
 import { IconDayComponent } from './icons/icon-day/icon-day.component';
 import { IconEditComponent } from './icons/icon-edit/icon-edit.component';
 import { HeaderNavComponent } from './header-nav/header-nav.component';
-import { FooterComponent } from './footers/footer/footer.component';
 import { PageClockComponent } from './pages/page-clock/page-clock.component';
 import { PageStopwatchComponent } from './pages/page-stopwatch/page-stopwatch.component';
-import { PageWrapperComponent } from './pages/page-wrapper/page-wrapper.component';
 import { IconClockComponent } from './icons/icon-clock/icon-clock.component';
 import { PageSettingsComponent } from './pages/page-settings/page-settings.component';
 import { IconTimerComponent } from './icons/icon-timer/icon-timer.component';
@@ -38,14 +36,12 @@ import { FooterClockComponent } from './footers/footer-clock/footer-clock.compon
     ClockfaceComponent,
     IconSettingsComponent,
     IconHomeComponent,
-    FooterComponent,
     IconDayComponent,
     IconEditComponent,
     HeaderNavComponent,
     IconStopwatchComponent,
     PageClockComponent,
     PageStopwatchComponent,
-    PageWrapperComponent,
     IconClockComponent,
     PageSettingsComponent,
     IconTimerComponent,

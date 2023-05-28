@@ -1,0 +1,30 @@
+footer {
+  display: flex;
+  flex-direction: var(--container-direction);
+  width: var(--line-width);
+  height: var(--line-height);
+  padding: 0px;
+
+  & .horizontal-line {
+    width: var(--line-width);
+    height: auto;
+    border-top: 1px solid;
+    border-left: none;
+  }
+
+  & .vertical-line {
+    width: auto;
+    height: var(--line-height);
+    border-top: none;
+    border-left: 1px solid;
+  }
+
+  & nav {
+    display: flex;
+    flex-direction: var(--nav-direction);
+    width: var(--line-width);
+    height: var(--line-height);
+    justify-content: space-around;
+    align-items: center;
+  }
+}

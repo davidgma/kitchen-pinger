@@ -10,10 +10,8 @@ export class PageSettingsComponent {
 
   strokeColour = "white";
   fillColour = "blue";
-  iconSize = 80;
 
   constructor(public cs: StylingService) {
-    cs.addEventListener('resize', () => this.size());
     this.strokeColour = cs.mode.color;
   }
 
@@ -30,16 +28,5 @@ export class PageSettingsComponent {
     this.strokeColour = this.cs.mode.color;
   }
 
-  private size() {
-    // console.log("size in header nav called");
-
-    this.iconSize = this.getIconSize();
-  }
-
-  getIconSize(): number {
-    // console.log("getIconSize called");
-
-    return Math.max(this.cs.iconMinimumSize, this.cs.clockSize / this.cs.iconScale);
-  }
 
 }

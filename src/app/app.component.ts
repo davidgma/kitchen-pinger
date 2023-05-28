@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { StylingService } from './services/styling.service';
 import { TimeService } from './services/time.service';
 
@@ -7,7 +7,7 @@ import { TimeService } from './services/time.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   title = 'pinger';
 
@@ -18,7 +18,6 @@ export class AppComponent implements OnInit {
   vh = 0;
 
   constructor(public cs: StylingService, public ts: TimeService) {
-    cs.addEventListener('resize', () => this.size());
     cs.addEventListener('colour-mode', () => {
       this.bodyStyle.color = this.cs.mode["color"];
       this.bodyStyle['background-color'] = this.cs.mode["background-color"];
@@ -39,45 +38,6 @@ export class AppComponent implements OnInit {
     "background-color": this.cs.mode["background-color"] // dark grey
   }
 
-  screenStyle = {
-    "position": "relative",
-    "height": "100%",
-    "display": "flex",
-    "justify-content": "space-between",
-    "flex-direction": this.cs.containerDirection,
-    // "align-items": "center",
-    // "padding": "20px"
-  }
-
-
-  ngOnInit() {
-    // console.log("In ngOnInit");
-
-    // Useful for future reference:
-    // onfocus = () => { console.log('App focused.'); };
-    // document.onvisibilitychange = ((event) => {
-    //   console.log("Visibility: " + document.visibilityState);
-    // });
-    // This syntax seems to work for element events
-    // https://developer.mozilla.org/en-US/docs/Web/API/Element
-    // onkeydown = () => { console.log('key down.'); };
-    // console.log("ariaCurrent: " + frameElement?.ariaCurrent);
-
-  }
-
-  // ngAfterContentInit() {
-  //   console.log("In ngAfterContentInit");
-  // }
-
-  // ngAfterViewInit() {
-  //   console.log("In ngAfterViewInit");
-  // }
-
-  // ngAfterViewChecked() {
-  //   console.log("In ngAfterViewChecked");
-
-  // }
-
   ngDoCheck() {
     // console.log("In ngDoCheck");
     if (window.innerHeight !== this.vh) {
@@ -90,16 +50,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  private size() {
-    this.screenStyle["flex-direction"] = this.cs.containerDirection;
-  }
-
-  // This worked:
-  // in template: (onclick)="clockClicked($event)"
-  // clockClicked(event: Event) {
-  //   console.log("The clockface was clicked.");
-  //   console.log(event);
-  // }
 
 
 

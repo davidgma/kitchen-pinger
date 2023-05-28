@@ -1,7 +1,8 @@
 <body [ngStyle]="bodyStyle">
-  <section id="all-screen" [ngStyle]="screenStyle">
+  <section [style.flex-direction]="this.cs.containerDirection">
     <app-header-nav></app-header-nav>
-    <!-- <app-page-clock></app-page-clock> -->
-    <app-page-wrapper></app-page-wrapper>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
   </section>
 </body>

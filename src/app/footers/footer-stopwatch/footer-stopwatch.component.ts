@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FooterComponent } from '../footer/footer.component';
+import { StylingService } from '../../services/styling.service';
+import { TimeService } from '../../services/time.service';
 
 @Component({
   selector: 'app-footer-stopwatch',
   templateUrl: './footer-stopwatch.component.html',
   styleUrls: ['./footer-stopwatch.component.scss']
 })
-export class FooterStopwatchComponent extends FooterComponent implements OnInit {
+export class FooterStopwatchComponent {
 
+  constructor(public cs: StylingService, public ts: TimeService) { }
 
   resetStopwatch(event: MouseEvent) {
     this.ts.resetStopwatch();

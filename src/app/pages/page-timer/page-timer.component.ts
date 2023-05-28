@@ -9,21 +9,6 @@ import { TimeService } from '../../services/time.service';
 })
 export class PageTimerComponent {
   constructor(public cs: StylingService, public ts: TimeService) {
-    cs.addEventListener('resize', () => this.size());
   }
 
-  screenStyle = {
-    "position": "relative",
-    "height": "100%",
-    "display": "flex",
-    "align-items": "center",
-    "justify-content": "space-between",
-    "flex-direction": this.cs.containerDirection,
-    // "background-color": "green"
-    // "padding": "20px"
-  }
-
-  private size() {
-    this.screenStyle["flex-direction"] = this.cs.containerDirection;
-  }
 }
