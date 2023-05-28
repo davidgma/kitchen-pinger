@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges, Output } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-clockface',
@@ -25,9 +25,8 @@ export class ClockfaceComponent {
   @Input() UTC = false;
 
   // For getting the background colour (which actually sets the colours of the hands, diallines and pin) from the parent component
-  @Input() colourStyles = {
-    "background-color": "green"
-  }
+  @Input() colour = "green";
+
 
   constructor() {
 
@@ -55,61 +54,10 @@ export class ClockfaceComponent {
   ngOnChanges(changes: SimpleChanges) {
     for (let variableName in changes) {
       let change = changes[variableName];
-      if (variableName === "clockSize") {
-        this.size(change.currentValue);
-      }
       if (variableName === "clockTime") {
         this.setHands(change.currentValue);
       }
-      if (variableName === "colourStyles") {
-        this.smallStyles['background-color'] = change.currentValue["color"];
-        this.largeStyles['background-color'] = change.currentValue["color"];
-        this.handsStyles['background-color'] = change.currentValue["color"];
-      }
     }
-  }
-
-  // Used to style the clockface
-  public clockSizing = {
-    "font-size": "min(90vw / 15, 90vh / 15)",
-    "width": "min(91vw, 91vh)",
-    "height": "min(91vw, 91vh)",
-    "border-width": "min(0.5vh, 0.5vw)",
-    "border-style": "solid",
-    "margin": "auto"
-  }
-
-  // For styling the small dial lines
-  public smallStyles = {
-    "position": "absolute",
-    "z-index": 3,
-    "margin-right": "auto",
-    "margin-left": "auto",
-    "left": "0",
-    "right": "0",
-    "transform-origin": "50% min(45vw, 45vh)",
-    "width": "min(0.5vh, 0.5vw)",
-    "height": "min(2vh, 2vw)",
-    "background-color": "green"
-  }
-
-  // For styling the large dial lines
-  public largeStyles = {
-    "position": "absolute",
-    "z-index": 3,
-    "margin-right": "auto",
-    "margin-left": "auto",
-    "left": "0",
-    "right": "0",
-    "transform-origin": "50% min(45vw, 45vh)",
-    "width": "min(1vh, 1vw)",
-    "height": "min(4vh, 4vw)",
-    "background-color": "green"
-  }
-
-  // For styling the colour of the hands and central pin
-  handsStyles = {
-    "background-color": "green"
   }
 
   private setHands(now: Date) {
@@ -131,13 +79,6 @@ export class ClockfaceComponent {
     }
   }
 
-  private size(size: number) {
-    this.clockSizing["font-size"] = (size / 15) + 'px';
-    this.clockSizing["width"] = size + 'px';
-    this.clockSizing["height"] = size + 'px';
-    this.largeStyles["transform-origin"] = '50% ' + ((size - 3)/2) + 'px';
-    this.smallStyles["transform-origin"] = '50% ' + ((size - 3)/2) + 'px';
-  }
 
 
 } // End of ClockfaceComponent

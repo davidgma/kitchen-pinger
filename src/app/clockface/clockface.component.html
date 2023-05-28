@@ -1,5 +1,5 @@
-<section id="clock-face" [ngStyle]="clockSizing">
-  <div class="dot" [ngStyle]="handsStyles"></div>
+<section id="clock-face" [style.--clock-size]="clockSize" [style.--colour]="colour">
+  <div class="dot"></div>
   <time *ngFor="let i of hours" id="h{{ i }}">{{ i }}</time>
   <span
     class="arm seconds"
@@ -7,23 +7,19 @@
   ></span>
   <span
     class="arm minutes"
-    [ngStyle]="handsStyles"
     style.transform="rotate({{ degreesMinutes }}deg)"
   ></span>
   <span
     class="arm hours"
-    [ngStyle]="handsStyles"
     style.transform="rotate({{ degreesHours }}deg)"
   ></span>
   <div
     class="dialline-large"
-    [ngStyle]="largeStyles"
     *ngFor="let i of dialLinesLarge"
     style.transform="rotate({{ i }}deg)"
   ></div>
   <div
     class="dialline"
-    [ngStyle]="smallStyles"
     *ngFor="let i of dialLinesSmall"
     style.transform="rotate({{ i }}deg)"
   ></div>

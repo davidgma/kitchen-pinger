@@ -1,7 +1,7 @@
 <section [style.--container-direction]="cs.containerDirection">
   <app-clockface
     [clockSize]="cs.clockSize"
-    [colourStyles]="cs.mode"
+    [colour]="cs.mode.color"
     [clockTime]="ts.stopwatchTime"
     (click)="ts.toggleStopwatch($event)"
     [UTC]="true"

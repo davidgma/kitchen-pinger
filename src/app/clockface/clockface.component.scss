@@ -3,28 +3,10 @@
   position: relative;
   border-width: min(0.5vh, 0.5vw);
   border-style: solid;
-
-  & #vertical-line {
-    position: absolute;
-    height: 100%;
-    width: 1px;
-    left: 50%;
-    border-width: 1px;
-    border-color: green;
-    border-style: dashed;
-    z-index: 11;
-  }
-
-  & #horizontal-line {
-    position: absolute;
-    height: 1px;
-    width: 100%;
-    top: 50%;
-    border-width: 1px;
-    border-color: green;
-    border-style: dashed;
-    z-index: 11;
-  }
+  font-size: calc(var(--clock-size) / 15 * 1px);
+  width: calc(var(--clock-size) * 1px);
+  height: calc(var(--clock-size) * 1px);
+  margin: auto;
 
   & time {
     position: absolute;
@@ -109,6 +91,7 @@
     width: min(2.5vh, 2.5vw);
     border-radius: calc(2.5cqi * 2);
     z-index: 8;
+    background-color: var(--colour);
   }
 
   & .hours {
@@ -122,6 +105,7 @@
     width: min(2.5vh, 2.5vw);
     border-radius: calc(2.5cqi * 2);
     z-index: 9;
+    background-color: var(--colour);
   }
 
   & .dot {
@@ -136,5 +120,34 @@
     position: absolute;
     z-index: 10;
     box-shadow: 0 2px 4px -1px black;
+    background-color: var(--colour);
   }
+
+  & .dialline {
+    position: absolute;
+    z-index: 3;
+    margin-right: auto;
+    margin-left: auto;
+    left: 0;
+    right: 0;
+    transform-origin: 50% calc((var(--clock-size) - 3) / 2 * 1px);
+    width: min(0.5vh, 0.5vw);
+    height: min(2vh, 2vw);
+    background-color: var(--colour);
+  }
+
+  & .dialline-large {
+    position: absolute;
+    z-index: 3;
+    margin-right: auto;
+    margin-left: auto;
+    left: 0;
+    right: 0;
+    transform-origin: 50% calc((var(--clock-size) - 3) / 2 * 1px);
+    width: min(1vh, 1vw);
+    height: min(4vh, 4vw);
+    background-color: var(--colour);
+  }
+
+
 }
