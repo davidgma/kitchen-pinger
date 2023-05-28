@@ -7,7 +7,7 @@ export class StylingService extends EventTarget {
 
   clockSize: number = 500;
   iconScale = 15;
-  iconMinimumSize = 40;
+  iconMinimumSize = 25;
   containerDirection: string;
   navDirection: string;
   lineWidth: string;

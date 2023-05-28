@@ -18,7 +18,6 @@ import { PageClockComponent } from './pages/page-clock/page-clock.component';
 import { PageStopwatchComponent } from './pages/page-stopwatch/page-stopwatch.component';
 import { PageWrapperComponent } from './pages/page-wrapper/page-wrapper.component';
 import { IconClockComponent } from './icons/icon-clock/icon-clock.component';
-import { IconComponent } from './icons/icon/icon.component';
 import { PageSettingsComponent } from './pages/page-settings/page-settings.component';
 import { IconTimerComponent } from './icons/icon-timer/icon-timer.component';
 import { PageTimerComponent } from './pages/page-timer/page-timer.component';
@@ -48,7 +47,6 @@ import { FooterClockComponent } from './footers/footer-clock/footer-clock.compon
     PageStopwatchComponent,
     PageWrapperComponent,
     IconClockComponent,
-    IconComponent,
     PageSettingsComponent,
     IconTimerComponent,
     PageTimerComponent,

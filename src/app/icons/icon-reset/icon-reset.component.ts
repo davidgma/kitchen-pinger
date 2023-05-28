@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { IconComponent } from '../icon/icon.component';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-icon-reset',
   templateUrl: './icon-reset.component.html',
   styleUrls: ['./icon-reset.component.scss']
 })
-export class IconResetComponent extends IconComponent {
-
+export class IconResetComponent {
+  @Input() iconSize = 10;
+  @Input() strokeColour = "white";
+  @Input() fillColour = "green";
 }

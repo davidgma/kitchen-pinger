@@ -29,11 +29,6 @@ export class ClockfaceComponent {
     "background-color": "green"
   }
 
-  // For alerting the parent when the clockface is clicked
-  // @Output() cli
-
-
-
   constructor() {
 
     // console.log("In ClockfaceComponent");

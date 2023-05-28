@@ -1,12 +1,13 @@
-import { Component, SimpleChanges } from '@angular/core';
-import { IconComponent } from '../icon/icon.component';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-icon-clock',
   templateUrl: './icon-clock.component.html',
   styleUrls: ['./icon-clock.component.scss']
 })
-export class IconClockComponent extends IconComponent {
+export class IconClockComponent {
 
- 
+  @Input() iconSize = 10;
+  @Input() strokeColour = "white";
+  @Input() fillColour = "green";
 }

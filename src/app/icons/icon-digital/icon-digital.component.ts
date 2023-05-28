@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { IconComponent } from '../icon/icon.component';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-icon-digital',
   templateUrl: './icon-digital.component.html',
   styleUrls: ['./icon-digital.component.scss']
 })
-export class IconDigitalComponent extends IconComponent {
-
+export class IconDigitalComponent {
+  @Input() iconSize = 10;
+  @Input() strokeColour = "white";
+  @Input() fillColour = "green";
 }

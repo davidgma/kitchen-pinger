@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { IconComponent } from '../icon/icon.component';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-icon-timer',
   templateUrl: './icon-timer.component.html',
   styleUrls: ['./icon-timer.component.scss']
 })
-export class IconTimerComponent extends IconComponent {
-
+export class IconTimerComponent {
+  @Input() iconSize = 10;
+  @Input() strokeColour = "white";
+  @Input() fillColour = "green";
 }

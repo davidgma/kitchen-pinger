@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-import { IconComponent } from '../icon/icon.component';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-icon-cancel',
   templateUrl: './icon-cancel.component.html',
   styleUrls: ['./icon-cancel.component.scss']
 })
-export class IconCancelComponent extends IconComponent {
-
+export class IconCancelComponent  {
+  @Input() iconSize = 10;
+  @Input() strokeColour = "white";
+  @Input() fillColour = "green";
 }
