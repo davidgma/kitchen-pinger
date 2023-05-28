@@ -41,6 +41,7 @@ export class HeaderNavComponent implements OnInit {
 
     switch (this.currentRoute) {
       case "/clock":
+      case "/":
         this.clockIconColour = "red";
         break;
       case "/stopwatch":
