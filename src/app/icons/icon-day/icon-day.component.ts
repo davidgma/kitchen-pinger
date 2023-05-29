@@ -9,5 +9,6 @@ export class IconDayComponent {
   @Input() iconSize = 10;
   @Input() strokeColour = "white";
   @Input() fillColour = "green";
+  @Input() selected = false;
 
 }

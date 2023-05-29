@@ -10,4 +10,5 @@ export class IconEditComponent {
   @Input() iconSize = 10;
   @Input() strokeColour = "white";
   @Input() fillColour = "green";
+  @Input() selected = false;
 }

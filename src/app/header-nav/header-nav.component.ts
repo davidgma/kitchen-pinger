@@ -16,6 +16,10 @@ export class HeaderNavComponent implements OnInit {
   stopwatchIconColour: string = "";
   timerIconColour: string = "";
   settingsIconColour: string = "";
+  clockSelected = true;
+  stopwatchSelected = false;
+  timerSelected = false;
+  settingsSelected = false;
 
   constructor(public cs: StylingService, private ss: StateService) { }
 
@@ -26,28 +30,36 @@ export class HeaderNavComponent implements OnInit {
       this.colour();
     });
 
+
+
   }
 
   // change the colour of the active link
   private colour() {
+
     this.clockIconColour = this.cs.mode.color;
     this.stopwatchIconColour = this.cs.mode.color;
     this.timerIconColour = this.cs.mode.color;
     this.settingsIconColour = this.cs.mode.color;
 
+    this.clockSelected = false;
+    this.stopwatchSelected = false;
+    this.timerSelected = false;
+    this.settingsSelected = false;
+
     switch (this.ss.currentRoute) {
       case "/clock":
       case "/":
-        this.clockIconColour = "red";
+        this.clockSelected = true;
         break;
       case "/stopwatch":
-        this.stopwatchIconColour = "red";
+        this.stopwatchSelected = true;
         break;
       case "/timer":
-        this.timerIconColour = "red";
+        this.timerSelected = true;
         break;
       case "/settings":
-        this.settingsIconColour = "red";
+        this.settingsSelected = true;
         break;
     }
   }

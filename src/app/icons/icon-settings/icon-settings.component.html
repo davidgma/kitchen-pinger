@@ -1,9 +1,11 @@
-<section>
+<section
+  [style.--height]="iconSize"
+  [style.--width]="iconSize"
+  [style.--fill]="fillColour"
+  [style.--stroke]="strokeColour"
+  [ngClass]="selected ? 'selected' : 'not-selected'"
+>
   <svg
-    [style.height]="iconSize"
-    [style.width]="iconSize"
-    [style.stroke]="strokeColour"
-    [style.fill]="fillColour"
     version="1.1"
     id="settings"
     xmlns="http://www.w3.org/2000/svg"
@@ -24,5 +26,5 @@
       />
     </g>
   </svg>
-  <p style.color={{strokeColour}}>Settings</p>
+  <p>Settings</p>
 </section>

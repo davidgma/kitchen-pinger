@@ -4,6 +4,8 @@ section:hover {
 
 svg {
   stroke-width: 2%;
+  height: calc(var(--height) * 1px);
+  width: calc(var(--width) * 1px);
 }
 
 section {
@@ -12,5 +14,15 @@ section {
   align-items: center;
   justify-content: center;
   padding: 10px;
+
+}
+
+.not-selected {
+  fill: white;
+  color: var(--stroke);
+}
+.selected {
+  fill: red;
+  color: red;
 }
 
