@@ -1,8 +1,15 @@
 <section [style.--container-direction]="cs.containerDirection">
   <app-clockface
+    *ngIf="ss.currentClock === 'analogue'"
     [clockSize]="cs.clockSize"
     [clockTime]="ts.clockTime"
     [colour]="cs.mode.color"
   ></app-clockface>
+  <app-digital-clock
+    *ngIf="ss.currentClock === 'digital'"
+    [clockSize]="cs.clockSize"
+    [clockTime]="ts.clockTime"
+    [colour]="cs.mode.color"
+  ></app-digital-clock>
   <app-footer-clock></app-footer-clock>
 </section>

@@ -29,6 +29,9 @@ import { FooterStopwatchComponent } from './footers/footer-stopwatch/footer-stop
 import { IconStartComponent } from './icons/icon-start/icon-start.component';
 import { IconPauseComponent } from './icons/icon-pause/icon-pause.component';
 import { FooterClockComponent } from './footers/footer-clock/footer-clock.component';
+import { IconMoonComponent } from './icons/icon-moon/icon-moon.component';
+import { DigitalClockComponent } from './digital-clock/digital-clock.component';
+import { IconAnalogueComponent } from './icons/icon-analogue/icon-analogue.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { FooterClockComponent } from './footers/footer-clock/footer-clock.compon
     FooterStopwatchComponent,
     IconStartComponent,
     IconPauseComponent,
-    FooterClockComponent
+    FooterClockComponent,
+    IconMoonComponent,
+    DigitalClockComponent,
+    IconAnalogueComponent
   ],
   imports: [
     BrowserModule,

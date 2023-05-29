@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StylingService } from '../services/styling.service';
-import { NavigationEnd, Router, RouterEvent } from '@angular/router';
+import { StateService } from '../services/state.service';
 
 @Component({
   selector: 'app-header-nav',
@@ -16,18 +16,14 @@ export class HeaderNavComponent implements OnInit {
   stopwatchIconColour: string = "";
   timerIconColour: string = "";
   settingsIconColour: string = "";
-  private currentRoute = "/clock";
 
-  constructor(public cs: StylingService, private router: Router) {}
+  constructor(public cs: StylingService, private ss: StateService) { }
 
   ngOnInit(): void {
-    this.cs.addEventListener('colour-mode', () => {this.colour();});
+    this.cs.addEventListener('colour-mode', () => { this.colour(); });
 
-    this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
-        this.currentRoute = event.url;
-        this.colour();
-      }
+    this.ss.routeChange.subscribe((newRoute) => {
+      this.colour();
     });
 
   }
@@ -39,7 +35,7 @@ export class HeaderNavComponent implements OnInit {
     this.timerIconColour = this.cs.mode.color;
     this.settingsIconColour = this.cs.mode.color;
 
-    switch (this.currentRoute) {
+    switch (this.ss.currentRoute) {
       case "/clock":
       case "/":
         this.clockIconColour = "red";

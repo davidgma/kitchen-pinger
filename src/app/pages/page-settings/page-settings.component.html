@@ -1,14 +1,45 @@
 <section class="setting">
-  <p>
-    Toggle dark and light mode
-  </p>
+  <p>Colour theme</p>
   <span>
     <app-icon-day
+      *ngIf="cs.mode === cs.lightMode"
       [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
-      [fillColour]="fillColour"
+      [fillColour]="cs.mode.color"
       (click)="toggleColours()"
       title="Toggle colour mode"
     ></app-icon-day>
+    <app-icon-moon
+      *ngIf="cs.mode === cs.darkMode"
+      [iconSize]="cs.iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="cs.mode.color"
+      (click)="toggleColours()"
+      title="Toggle colour mode"
+    ></app-icon-moon>
+  </span>
+</section>
+<section class="setting">
+  <p>Open in Stackblitz</p>
+  <span>
+    <app-icon-edit
+      [iconSize]="cs.iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="cs.mode.color"
+      (click)="openInStackBlitz()"
+      title="Open in Stackblitz"
+    ></app-icon-edit>
+  </span>
+</section>
+<section class="setting">
+  <p>Open main version</p>
+  <span>
+    <app-icon-home
+      [iconSize]="cs.iconSize"
+      [strokeColour]="cs.mode.color"
+      [fillColour]="cs.mode.color"
+      (click)="openMainVersion()"
+      title="Open main version"
+    ></app-icon-home>
   </span>
 </section>

@@ -13,6 +13,7 @@ export class TimeService {
   // Used for the toggling of start/pause
   isStopwatchRunning = false;
   private stopwatchInterval?: Interval;
+  pingerTime: Date = new Date(2000, 0, 0, 0, 0, 0);
 
   // For pausing and restarting
   private timeSoFar: number = 0;

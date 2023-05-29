@@ -3,6 +3,6 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  font-size: 3vw;
+  font-size: clamp(1.5rem, 4rem, 3vw);
   padding: 2vw;
 }

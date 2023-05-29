@@ -33,17 +33,20 @@
       title="Reset stopwatch"
     ></app-icon-reset>
     <app-icon-digital
+      *ngIf="ss.currentClock === 'analogue'"
       [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
       [fillColour]="cs.mode.color"
       title="Digital clock"
+      (click)="ss.toggleClockType()"
     ></app-icon-digital>
-    <app-icon-settings
+    <app-icon-analogue
+      *ngIf="ss.currentClock === 'digital'"
       [iconSize]="cs.iconSize"
       [strokeColour]="cs.mode.color"
       [fillColour]="cs.mode.color"
-      title="Settings"
-      [routerLink]="'settings'"
-    ></app-icon-settings>
+      title="Analogue clock"
+      (click)="ss.toggleClockType()"
+    ></app-icon-analogue>
   </nav>
 </footer>

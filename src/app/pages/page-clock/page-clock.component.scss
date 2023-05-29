@@ -11,6 +11,12 @@ section {
     display: flex;
 
   }
+
+  & app-digital-clock {
+    flex: 1;
+    display: flex;
+
+  }
 }
 
 

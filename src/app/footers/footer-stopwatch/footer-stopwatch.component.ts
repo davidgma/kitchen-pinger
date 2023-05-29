@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StylingService } from '../../services/styling.service';
 import { TimeService } from '../../services/time.service';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-footer-stopwatch',
@@ -9,7 +10,7 @@ import { TimeService } from '../../services/time.service';
 })
 export class FooterStopwatchComponent {
 
-  constructor(public cs: StylingService, public ts: TimeService) { }
+  constructor(public cs: StylingService, public ts: TimeService, public ss: StateService) { }
 
   resetStopwatch(event: MouseEvent) {
     this.ts.resetStopwatch();

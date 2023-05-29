@@ -28,5 +28,17 @@ export class PageSettingsComponent {
     this.strokeColour = this.cs.mode.color;
   }
 
+  openInStackBlitz() {
+    if (window != null) {
+      window.open('https://stackblitz.com/edit/kitchen-pinger', '_blank');
+    }
+  }
+
+  openMainVersion() {
+  if (window != null) {
+    window.open('https://pinger.freshfood.rocks', '_blank');
+  }
+}
+
 
 }

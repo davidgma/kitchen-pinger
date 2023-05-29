@@ -1,0 +1,6 @@
+<section [style.--clock-size]="clockSize" [style.--colour]="colour">
+  <p *ngIf="!UTC">{{clockTime.getHours().toFixed().padStart(2, '0')}}:{{clockTime.getMinutes().toFixed().padStart(2, '0')}}:{{clockTime.getSeconds().toFixed().padStart(2, '0')}}
+  </p>
+  <p *ngIf="UTC">{{clockTime.getUTCHours().toFixed().padStart(2, '0')}}:{{clockTime.getUTCMinutes().toFixed().padStart(2, '0')}}:{{clockTime.getUTCSeconds().toFixed().padStart(2, '0')}}
+  </p>
+</section>

@@ -1,10 +1,19 @@
 <section [style.--container-direction]="cs.containerDirection">
   <app-clockface
+    *ngIf="ss.currentClock === 'analogue'"
     [clockSize]="cs.clockSize"
-    [colour]="cs.mode.color"
     [clockTime]="ts.stopwatchTime"
+    [colour]="cs.mode.color"
     (click)="ts.toggleStopwatch($event)"
     [UTC]="true"
   ></app-clockface>
+  <app-digital-clock
+    *ngIf="ss.currentClock === 'digital'"
+    [clockSize]="cs.clockSize"
+    [clockTime]="ts.stopwatchTime"
+    [colour]="cs.mode.color"
+    (click)="ts.toggleStopwatch($event)"
+    [UTC]="true"
+  ></app-digital-clock>
   <app-footer-stopwatch></app-footer-stopwatch>
 </section>
