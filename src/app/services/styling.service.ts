@@ -14,12 +14,19 @@ export class StylingService extends EventTarget {
   lineHeight: string;
   private currentFormat: number = 0;
   iconSize: number;
+  modeName = "dark";
 
   #mode: ColourMode;
   get mode() { return this.#mode; }
 
   set mode(newMode: ColourMode) {
     this.#mode = newMode;
+    if (newMode === this.darkMode) {
+      this.modeName = "dark";
+    }
+    if (newMode === this.lightMode) {
+      this.modeName = "light";
+    }
     this.dispatchEvent(new Event("colour-mode"));
   }
 
@@ -50,6 +57,7 @@ export class StylingService extends EventTarget {
   public darkMode: ColourMode = {
     "color": "#e8e8e8", // off-white
     "background-color": "#202020" // dark grey
+    // "background-color": "rgb(122,122,122);"
   };
 
   public lightMode: ColourMode = {
