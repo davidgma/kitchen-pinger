@@ -4,12 +4,16 @@
     [clockSize]="cs.clockSize"
     [clockTime]="ts.pingerTime"
     [colour]="cs.mode.color"
+    (click)="ms.playAlarm()"
+    [UTC]="true"
   ></app-clockface>
   <app-digital-clock
     *ngIf="ss.currentClock === 'digital'"
     [clockSize]="cs.clockSize"
     [clockTime]="ts.pingerTime"
     [colour]="cs.mode.color"
+    (click)="ms.playAlarm()"
+    [UTC]="true"
   ></app-digital-clock>
   <app-footer-timer></app-footer-timer>
 </section>

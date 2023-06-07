@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { StylingService } from '../../services/styling.service';
 import { TimeService } from '../../services/time.service';
 import { StateService } from 'src/app/services/state.service';
+import { MusicService } from 'src/app/services/sound.service';
 
 @Component({
   selector: 'app-page-timer',
@@ -9,7 +10,8 @@ import { StateService } from 'src/app/services/state.service';
   styleUrls: ['./page-timer.component.scss']
 })
 export class PageTimerComponent {
-  constructor(public cs: StylingService, public ts: TimeService, public ss: StateService) {
+  constructor(public cs: StylingService, public ts: TimeService, public ss: StateService, public ms: MusicService) {
   }
+
 
 }
