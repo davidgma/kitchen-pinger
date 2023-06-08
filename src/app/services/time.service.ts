@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IntervalService, Interval } from './interval.service';
 import { TitleService } from './title.service';
+import { MusicService } from './sound.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,18 +9,27 @@ import { TitleService } from './title.service';
 export class TimeService {
 
   clockTime: Date = new Date();
-  stopwatchTime: Date = new Date(2000, 0, 0, 0, 0, 0);
+  stopwatchTime: Date = new Date(2000, 0, 1, 0, 0, 0);
   stopwatchStartTime = new Date();
   // Used for the toggling of start/pause
   isStopwatchRunning = false;
   private stopwatchInterval?: Interval;
-  pingerTime: Date = new Date(2000, 0, 0, 0, 0, 0);
-
   // For pausing and restarting
-  private timeSoFar: number = 0;
+  private stopwatchTimeSoFar: number = 0;
+
+  // For the pinger (= timer)
+  timerTime: Date = new Date(2000, 0, 1, 0, 0, 0);
+  timerStartTime = new Date();
+  isTimerRunning = false;
+  private timerInterval?: Interval;
+  private timerKeysPressed = new Array<number>();
+  private timerOriginalTime = new Date();
+  private timerTimeSoFar: number = 0;
+
+
 
   constructor(private intervalService: IntervalService,
-    private titleService: TitleService) { }
+    private titleService: TitleService, private ms: MusicService) { }
 
   // Starts updating the time periodically based on the
   // current time of day.
@@ -58,7 +68,7 @@ export class TimeService {
   startStopwatch() {
 
     this.stopwatchStartTime = new Date(
-      (new Date()).valueOf() - this.timeSoFar
+      (new Date()).valueOf() - this.stopwatchTimeSoFar
     );
 
     let intervalName = "stopwatch";
@@ -89,7 +99,7 @@ export class TimeService {
       this.stopwatchInterval?.eventEmitter.unsubscribe();
     }
     this.isStopwatchRunning = false;
-    this.timeSoFar = (new Date()).valueOf() - this.stopwatchStartTime.valueOf();
+    this.stopwatchTimeSoFar = (new Date()).valueOf() - this.stopwatchStartTime.valueOf();
   }
 
   resetStopwatch() {
@@ -97,9 +107,9 @@ export class TimeService {
     if (isRunning) {
       this.pauseStopwatch();
     }
-    this.stopwatchTime = new Date(2000, 0, 0, 0, 0, 0);
+    this.stopwatchTime = new Date(2000, 0, 1, 0, 0, 0);
     this.stopwatchStartTime = new Date();
-    this.timeSoFar = 0;
+    this.stopwatchTimeSoFar = 0;
     this.titleService.setTitle("/stopwatch",
       this.toUTCTitleString(this.stopwatchTime));
 
@@ -115,6 +125,119 @@ export class TimeService {
     else {
       this.startStopwatch();
     }
+  }
+
+
+  startTimer() {
+
+    this.timerOriginalTime = new Date(this.timerTime.valueOf());
+
+    this.timerStartTime = new Date();
+
+    let intervalName = "timer";
+
+    // Unsubscribe to any existing intervals
+    this.intervalService.stop(intervalName);
+
+    // Set up an interval to subscribe to.
+    this.timerInterval = this.intervalService.start(intervalName, 1000, false);
+
+    this.timerInterval.eventEmitter.subscribe(() => {
+      let now = new Date();
+      let difference = now.valueOf() - this.timerStartTime.valueOf();
+      difference = Math.floor(difference / 1000) * 1000;
+
+      this.timerTime = new Date(this.timerOriginalTime.valueOf() - difference);
+
+      // time's up
+      if (this.timerTime.getFullYear() === 1999) {
+        this.pauseTimer();
+        this.resetTimer();
+        this.ms.playAlarm();
+      }
+
+      this.titleService.setTitle("/timer",
+        this.toUTCTitleString(this.timerTime));
+
+    });
+
+    this.isTimerRunning = true;
+  }
+
+  pauseTimer() {
+    if (this.timerInterval !== null) {
+      this.intervalService.stop("timer");
+      this.timerInterval?.eventEmitter.unsubscribe();
+    }
+    this.isTimerRunning = false;
+    this.timerTimeSoFar = (new Date()).valueOf() - this.timerStartTime.valueOf();
+  }
+
+  resetTimer() {
+    if (this.isTimerRunning) {
+      this.pauseTimer();
+    }
+    this.timerTime = new Date(2000, 0, 1, 0, 0, 0);
+    // this.timerStartTime = new Date();
+    this.timerTimeSoFar = 0;
+    this.timerKeysPressed = new Array<number>();
+    this.titleService.setTitle("/timer",
+      this.toUTCTitleString(this.timerTime));
+
+  }
+
+  toggleTimer() {
+    if (this.isTimerRunning) {
+      this.pauseTimer();
+    }
+    else {
+      this.startTimer();
+    }
+  }
+
+  adjustPingerTime(value: number) {
+    this.timerKeysPressed.push(value);
+    let midnight = new Date(2000, 0, 1, 0, 0, 0);
+    // console.log(this.timerKeysPressed.toString());
+    if (this.timerKeysPressed.length == 1) {
+      this.timerTime = new Date(midnight.valueOf() + this.timerKeysPressed[0] * 1000);
+    }
+    if (this.timerKeysPressed.length == 2) {
+      let seconds = this.timerKeysPressed[0] * 10 + this.timerKeysPressed[1];
+      this.timerTime = new Date(midnight.valueOf() + seconds * 1000);
+    }
+    if (this.timerKeysPressed.length == 3) {
+      let seconds = this.timerKeysPressed[0] * 60 + this.timerKeysPressed[1] * 10 + this.timerKeysPressed[2];
+      this.timerTime = new Date(midnight.valueOf() + seconds * 1000);
+    }
+    if (this.timerKeysPressed.length == 4) {
+      let seconds = this.timerKeysPressed[0] * 600
+        + this.timerKeysPressed[1] * 60 + this.timerKeysPressed[2] * 10 + this.timerKeysPressed[3];
+      this.timerTime = new Date(midnight.valueOf() + seconds * 1000);
+    }
+    if (this.timerKeysPressed.length == 5) {
+      let seconds =
+        this.timerKeysPressed[0] * 60 * 60
+        + this.timerKeysPressed[1] * 600
+        + this.timerKeysPressed[2] * 60
+        + this.timerKeysPressed[3] * 10
+        + this.timerKeysPressed[4];
+      this.timerTime = new Date(midnight.valueOf() + seconds * 1000);
+    }
+    if (this.timerKeysPressed.length == 6) {
+      let seconds =
+        this.timerKeysPressed[0] * 60 * 60 * 10
+        + this.timerKeysPressed[1] * 60 * 60
+        + this.timerKeysPressed[2] * 600
+        + this.timerKeysPressed[3] * 60
+        + this.timerKeysPressed[4] * 10
+        + this.timerKeysPressed[5];
+      this.timerTime = new Date(midnight.valueOf() + seconds * 1000);
+    }
+
+    this.titleService.setTitle("/timer",
+      this.toUTCTitleString(this.timerTime));
+
   }
 
   private toTitleString(date: Date) {

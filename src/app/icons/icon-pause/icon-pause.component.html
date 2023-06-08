@@ -27,5 +27,5 @@
       />
     </g>
   </svg>
-  <p style.color={{strokeColour}}>Pause</p>
+  <p *ngIf="text !== null" style.color={{strokeColour}}>{{text}}</p>
 </section>

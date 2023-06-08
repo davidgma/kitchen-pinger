@@ -10,4 +10,5 @@ export class IconStartComponent {
   @Input() strokeColour = "white";
   @Input() fillColour = "green";
   @Input() selected = false;
+  @Input() text: string | null = "Start";
 }

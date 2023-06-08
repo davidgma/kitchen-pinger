@@ -13,5 +13,22 @@ export class PageTimerComponent {
   constructor(public cs: StylingService, public ts: TimeService, public ss: StateService, public ms: MusicService) {
   }
 
+  toggleTimer() {
+    this.ts.toggleTimer();
+  }
+
+  resetTimer() {
+    this.ts.resetTimer();
+  }
+
+  keyPressed(value: number) {
+    this.ts.adjustPingerTime(value);
+  }
+
+  keyPressedTwice(value: number) {
+    this.ts.adjustPingerTime(value);
+    this.ts.adjustPingerTime(value);
+  }
+//(click)="ms.playAlarm()"
 
 }

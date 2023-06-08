@@ -1,19 +1,72 @@
-<section [style.--container-direction]="cs.containerDirection">
+<section
+  [style.--container-direction]="cs.containerDirection"
+  [style.--clock-size]="cs.clockSize"
+  [style.--background-color]="cs.mode['background-color']"
+  [style.--color]="cs.mode.color"
+>
   <app-clockface
     *ngIf="ss.currentClock === 'analogue'"
     [clockSize]="cs.clockSize"
-    [clockTime]="ts.pingerTime"
+    [clockTime]="ts.timerTime"
     [colour]="cs.mode.color"
-    (click)="ms.playAlarm()"
     [UTC]="true"
   ></app-clockface>
-  <app-digital-clock
-    *ngIf="ss.currentClock === 'digital'"
-    [clockSize]="cs.clockSize"
-    [clockTime]="ts.pingerTime"
-    [colour]="cs.mode.color"
-    (click)="ms.playAlarm()"
-    [UTC]="true"
-  ></app-digital-clock>
+  <span class="digital" *ngIf="ss.currentClock === 'digital'">
+    <app-digital-clock
+      [clockSize]="cs.clockSize"
+      [clockTime]="ts.timerTime"
+      [colour]="cs.mode.color"
+      [UTC]="true"
+    >
+    </app-digital-clock>
+    <div class="button-row">
+      <span class="button" (click)="keyPressed(1)">1</span>
+      <span class="button" (click)="keyPressed(2)">2</span>
+      <span class="button" (click)="keyPressed(3)">3</span>
+      <app-icon-start
+        class="button"
+        *ngIf="!ts.isTimerRunning"
+        [iconSize]="cs.iconSize * 2"
+        [strokeColour]="cs.mode.color"
+        [fillColour]="cs.mode.color"
+        [text]="null"
+        (click)="toggleTimer()"
+        title="Start timer"
+      ></app-icon-start>
+      <app-icon-pause
+        class="button"
+        *ngIf="ts.isTimerRunning"
+        [iconSize]="cs.iconSize * 2"
+        [strokeColour]="cs.mode.color"
+        [fillColour]="cs.mode.color"
+        title="Pause timer"
+        [text]="null"
+        (click)="toggleTimer()"
+      ></app-icon-pause>
+    </div>
+    <div class="button-row">
+      <span class="button" (click)="keyPressed(4)">4</span>
+      <span class="button" (click)="keyPressed(5)">5</span>
+      <span class="button" (click)="keyPressed(6)">6</span>
+      <app-icon-reset
+        class="button"
+        [iconSize]="cs.iconSize * 2"
+        [strokeColour]="cs.mode.color"
+        [fillColour]="cs.mode.color"
+        [text]="null"
+        (click)="resetTimer()"
+        title="Start timer"
+      ></app-icon-reset>
+    </div>
+    <div class="button-row">
+      <span class="button" (click)="keyPressed(7)">7</span>
+      <span class="button" (click)="keyPressed(8)">8</span>
+      <span class="button" (click)="keyPressed(9)">9</span>
+    </div>
+    <div class="button-row">
+      <span class="button" (click)="keyPressed(0)">0</span>
+      <span class="button" (click)="keyPressedTwice(0)">00</span>
+    </div>
+  </span>
   <app-footer-timer></app-footer-timer>
 </section>

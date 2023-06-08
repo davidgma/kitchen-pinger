@@ -13,8 +13,7 @@ export class FooterTimerComponent {
 
   constructor(public cs: StylingService, public ts: TimeService, public ss: StateService, public ms: MusicService) { }
 
-  cancelTimer(event: MouseEvent) {
+  cancelTimer() {
     this.ms.cancelAlarm();
-
   }
 }
