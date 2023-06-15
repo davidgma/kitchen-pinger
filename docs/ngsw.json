@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1686850171430,
+  "timestamp": 1686850349295,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -53,7 +53,7 @@
     "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/assets/love-boat.mp3": "1650fa716eb6b6a46f2d4d5a54d8f7c9465e8380",
-    "/favicon.svg": "59b46e5a39c2dfc4ae67ff63f6cf1299d5450e7f",
+    "/favicon.svg": "58860f5222bde8a712a7817bc0b6d342b3aa34c4",
     "/index.html": "63193b3baca49d80f03b15ee4f68eef2df78761a",
     "/main.113adcc1f36fab09.js": "c0965004c3887afbdbe76e5148f5f185d5749547",
     "/manifest.webmanifest": "a097b949c1a140748e30f7fb595d6d6564156655",
