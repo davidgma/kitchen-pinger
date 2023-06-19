@@ -31,7 +31,6 @@ export class TimeService {
 
   constructor(private intervalService: IntervalService,
     private titleService: TitleService, private ms: MusicService) {
-
     this.worker = this.setUpWorker();
 
   }
@@ -73,7 +72,7 @@ export class TimeService {
   startStopwatch() {
 
     // this.worker.
-    // window.scheduler
+    window.fram
 
     this.stopwatchStartTime = new Date(
       (new Date()).valueOf() - this.stopwatchTimeSoFar
@@ -138,6 +137,7 @@ export class TimeService {
 
   startTimer() {
     // console.log("scheduler: " + ("scheduler" in this));
+
 
     this.timerOriginalTime = new Date(this.timerTime.valueOf());
 
@@ -281,4 +281,5 @@ export class TimeService {
 
 
 }
+
 
